@@ -20,14 +20,6 @@ type NavItem = {
   packageGroups?: typeof PACKAGE_NAV_GROUPS;
 };
 
-const groupHoverStyles: Record<string, string> = {
-  water: 'bg-teal-50 text-teal-800',
-  'land-motor': 'bg-orange-50 text-orange-800',
-  'land-physical': 'bg-green-50 text-green-800',
-  sky: 'bg-violet-50 text-violet-800',
-  'upcoming-tours': 'bg-amber-50 text-amber-800',
-};
-
 const NavbarTravel = () => {
   const { navGroups } = useCategoryLabels();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -129,7 +121,7 @@ const NavbarTravel = () => {
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
     {
-      name: 'Package',
+      name: 'Packages',
       href: '/packages',
       packageGroups: navGroups,
     },
@@ -239,11 +231,12 @@ const NavbarTravel = () => {
                   const dropdownOpen = isDropdownOpen(index);
                   const activeGroup = hoveredPackageGroup
                     ? item.packageGroups.find((g) => g.slug === hoveredPackageGroup)
-                    : undefined;
-                  const activeSub = activeGroup?.items.find((s) => s.slug === hoveredPackageSub);
+                    : item.packageGroups[0];
+                  const activeSub =
+                    activeGroup?.items.find((s) => s.slug === hoveredPackageSub) ??
+                    activeGroup?.items[0];
                   const activeMinis = activeSub?.miniItems ?? [];
-                  const showSubColumn = Boolean(activeGroup?.items?.length);
-                  const showMiniColumn = Boolean(activeSub && activeMinis.length);
+                  const showMiniColumn = Boolean(activeMinis.length);
 
                   return (
                     <div
@@ -251,6 +244,7 @@ const NavbarTravel = () => {
                       ref={dropdownOpen ? openDropdownRef : null}
                       className="relative"
                       onMouseEnter={() => openPackageDropdown(index, item.packageGroups!)}
+                      onMouseLeave={closeDropdown}
                     >
                       <Link
                         href={item.href}
@@ -266,97 +260,154 @@ const NavbarTravel = () => {
                         />
                       </Link>
                       <div
-                        className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 z-[60] transition-all duration-200 ${
+                        className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 z-[60] transition-all duration-200 ${
                           dropdownOpen
                             ? 'opacity-100 visible translate-y-0 pointer-events-auto'
-                            : 'opacity-0 invisible translate-y-1 pointer-events-none'
+                            : 'opacity-0 invisible -translate-y-1 pointer-events-none'
                         }`}
                       >
                         <div
-                          className="flex rounded-xl bg-white shadow-2xl border border-gray-100 overflow-hidden"
+                          className="w-[min(92vw,720px)] rounded-2xl bg-white shadow-2xl border border-gray-100 overflow-hidden"
                           onMouseDown={(e) => e.stopPropagation()}
                         >
-                          <div className="min-w-[200px] py-2">
-                            {item.packageGroups.map((group) => (
-                              <Link
-                                key={group.slug}
-                                href={getGroupPageHref(group.slug)}
-                                className={`flex items-center justify-between px-4 py-2.5 text-sm font-semibold transition-colors ${
-                                  hoveredPackageGroup === group.slug
-                                    ? groupHoverStyles[group.slug] ?? 'bg-gray-50 text-gray-800'
-                                    : 'text-gray-800 hover:bg-gray-50'
-                                }`}
-                                onMouseEnter={() => {
-                                  setHoveredPackageGroup(group.slug);
-                                  setHoveredPackageSub(group.items[0]?.slug ?? null);
-                                }}
-                                onClick={() => closeDropdown()}
-                              >
-                                <span>{group.label}</span>
-                                <ChevronRight className="h-4 w-4 text-gray-400" />
-                              </Link>
-                            ))}
-                            <Link
-                              href="/packages"
-                              onClick={() => closeDropdown()}
-                              className="block px-4 py-2.5 text-xs font-bold uppercase tracking-widest text-[#bd9245] hover:bg-[#bd9245]/5 border-t border-gray-100 mt-1"
-                            >
-                              View All Packages
-                            </Link>
-                          </div>
-                          {showSubColumn && (
-                            <div className="min-w-[280px] max-w-[300px] border-l border-gray-100 py-2 bg-white max-h-[420px] overflow-y-auto">
-                              {activeGroup!.items.map((sub) => (
-                                  <div
-                                    key={sub.slug}
-                                    className={`flex items-center justify-between gap-2 px-4 py-2.5 text-sm transition-colors cursor-default ${
-                                      hoveredPackageSub === sub.slug
-                                        ? 'bg-gray-50 text-[#bd9245] font-semibold'
-                                        : 'text-gray-700 hover:bg-gray-50'
+                          <div className="flex">
+                            {/* Column 1 — Experience groups */}
+                            <div className="w-[200px] shrink-0 bg-[#faf8f3] border-r border-gray-100 py-3">
+                              <p className="px-4 pb-2 text-[10px] font-black uppercase tracking-[0.18em] text-gray-400">
+                                Categories
+                              </p>
+                              {item.packageGroups.map((group) => {
+                                const isGroupActive = activeGroup?.slug === group.slug;
+                                return (
+                                  <Link
+                                    key={group.slug}
+                                    href={getGroupPageHref(group.slug)}
+                                    className={`mx-2 mb-0.5 flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-semibold transition-colors ${
+                                      isGroupActive
+                                        ? 'bg-white text-[#bd9245] shadow-sm'
+                                        : 'text-gray-700 hover:bg-white/70 hover:text-gray-900'
                                     }`}
-                                    onMouseEnter={() => setHoveredPackageSub(sub.slug)}
+                                    onMouseEnter={() => {
+                                      setHoveredPackageGroup(group.slug);
+                                      setHoveredPackageSub(group.items[0]?.slug ?? null);
+                                    }}
+                                    onClick={() => closeDropdown()}
                                   >
-                                    {sub.miniItems?.length ? (
-                                      <>
-                                        <span>{sub.label}</span>
-                                        <ChevronRight className="h-4 w-4 text-gray-400 shrink-0" />
-                                      </>
-                                    ) : (
+                                    <span>{group.label}</span>
+                                    <ChevronRight
+                                      className={`h-4 w-4 shrink-0 ${
+                                        isGroupActive ? 'text-[#bd9245]' : 'text-gray-300'
+                                      }`}
+                                    />
+                                  </Link>
+                                );
+                              })}
+                            </div>
+
+                            {/* Column 2 — Experiences (always clickable) */}
+                            <div className="flex-1 min-w-0 py-3 max-h-[420px] overflow-y-auto">
+                              <div className="px-4 pb-2 flex items-center justify-between gap-3">
+                                <p className="text-[10px] font-black uppercase tracking-[0.18em] text-gray-400">
+                                  {activeGroup?.label || 'Experiences'}
+                                </p>
+                                {activeGroup ? (
+                                  <Link
+                                    href={getGroupPageHref(activeGroup.slug)}
+                                    onClick={() => closeDropdown()}
+                                    className="text-[10px] font-bold uppercase tracking-wider text-[#bd9245] hover:underline"
+                                  >
+                                    View all
+                                  </Link>
+                                ) : null}
+                              </div>
+                              <div className="px-2 space-y-0.5">
+                                {activeGroup?.items.map((sub) => {
+                                  const isSubActive = activeSub?.slug === sub.slug;
+                                  const hasMinis = Boolean(sub.miniItems?.length);
+                                  return (
+                                    <div
+                                      key={sub.slug}
+                                      className={`rounded-xl transition-colors ${
+                                        isSubActive ? 'bg-[#bd9245]/10' : 'hover:bg-gray-50'
+                                      }`}
+                                      onMouseEnter={() => setHoveredPackageSub(sub.slug)}
+                                    >
                                       <Link
                                         href={sub.href}
                                         onClick={() => closeDropdown()}
-                                        className="flex items-center justify-between gap-2 w-full"
+                                        className={`flex items-center justify-between gap-2 px-3 py-2.5 text-sm ${
+                                          isSubActive
+                                            ? 'text-[#bd9245] font-semibold'
+                                            : 'text-gray-700'
+                                        }`}
                                       >
-                                        <span>{sub.label}</span>
-                                        {sub.isFuture && (
-                                          <span className="text-[9px] font-black uppercase tracking-wider text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full shrink-0">
-                                            Future
-                                          </span>
-                                        )}
+                                        <span className="leading-snug">{sub.label}</span>
+                                        <span className="flex items-center gap-1.5 shrink-0">
+                                          {sub.isFuture ? (
+                                            <span className="text-[9px] font-bold uppercase tracking-wide text-amber-700/80 bg-amber-50 px-1.5 py-0.5 rounded">
+                                              Soon
+                                            </span>
+                                          ) : null}
+                                          {hasMinis ? (
+                                            <ChevronRight className="h-4 w-4 text-gray-300" />
+                                          ) : null}
+                                        </span>
                                       </Link>
-                                    )}
-                                  </div>
-                                ))}
-                            </div>
-                          )}
-                          {showMiniColumn && (
-                              <div className="min-w-[240px] max-w-[280px] border-l border-gray-100 py-2 bg-white max-h-[420px] overflow-y-auto">
-                                {activeMinis.map((mini) => (
-                                  <Link
-                                    key={mini.href}
-                                    href={mini.href}
-                                    onClick={() => closeDropdown()}
-                                    className={`block px-4 py-2.5 text-sm transition-colors ${
-                                      pathname === mini.href
-                                        ? 'bg-[#bd9245]/10 text-[#bd9245] font-semibold'
-                                        : 'text-gray-700 hover:bg-gray-50 hover:text-[#bd9245]'
-                                    }`}
-                                  >
-                                    {mini.label}
-                                  </Link>
-                                ))}
+                                    </div>
+                                  );
+                                })}
                               </div>
-                          )}
+                            </div>
+
+                            {/* Column 3 — Only when mini options exist */}
+                            {showMiniColumn ? (
+                              <div className="w-[200px] shrink-0 border-l border-gray-100 bg-white py-3 max-h-[420px] overflow-y-auto">
+                                <p className="px-4 pb-2 text-[10px] font-black uppercase tracking-[0.18em] text-gray-400">
+                                  Options
+                                </p>
+                                <div className="px-2 space-y-0.5">
+                                  {activeMinis.map((mini) => (
+                                    <Link
+                                      key={mini.slug}
+                                      href={mini.href}
+                                      onClick={() => closeDropdown()}
+                                      className={`block rounded-xl px-3 py-2.5 text-sm transition-colors ${
+                                        pathname === mini.href
+                                          ? 'bg-[#bd9245]/10 text-[#bd9245] font-semibold'
+                                          : 'text-gray-700 hover:bg-gray-50 hover:text-[#bd9245]'
+                                      }`}
+                                    >
+                                      {mini.label}
+                                    </Link>
+                                  ))}
+                                </div>
+                                {activeSub ? (
+                                  <Link
+                                    href={activeSub.href}
+                                    onClick={() => closeDropdown()}
+                                    className="mx-2 mt-2 block rounded-xl px-3 py-2 text-xs font-bold uppercase tracking-wider text-[#bd9245] hover:bg-[#bd9245]/5"
+                                  >
+                                    See all in {activeSub.label.split('&')[0].trim()}
+                                  </Link>
+                                ) : null}
+                              </div>
+                            ) : null}
+                          </div>
+
+                          {/* Footer CTA — always visible */}
+                          <div className="flex items-center justify-between gap-4 border-t border-gray-100 bg-[#faf8f3] px-4 py-3">
+                            <p className="text-xs text-gray-500 hidden sm:block">
+                              Browse curated adventure experiences across India & beyond
+                            </p>
+                            <Link
+                              href="/packages"
+                              onClick={() => closeDropdown()}
+                              className="inline-flex items-center gap-1.5 rounded-full bg-[#bd9245] px-4 py-2 text-[11px] font-black uppercase tracking-wider text-white hover:bg-[#a07835] transition-colors ml-auto"
+                            >
+                              View All Packages
+                              <ChevronRight className="h-3.5 w-3.5" />
+                            </Link>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -626,7 +677,7 @@ const NavbarTravel = () => {
                                     subOpen &&
                                     sub.miniItems!.map((mini) => (
                                       <Link
-                                        key={mini.href}
+                                        key={mini.slug}
                                         href={mini.href}
                                         className={`block pl-14 pr-4 py-1.5 text-xs rounded-lg transition-colors ${
                                           pathname === mini.href
