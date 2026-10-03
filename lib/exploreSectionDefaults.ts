@@ -13,7 +13,7 @@ export const EXPLORE_SECTION_DEFAULTS = {
     'Vetted Local Partners',
   ],
   exploreCtaLabel: 'Book Now',
-  explorePhone: '+91 877919 2482',
+  explorePhone: '+91 87657 67140',
   explorePhoneLabel: 'CALL NOW',
 } as const;
 

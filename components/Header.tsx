@@ -12,7 +12,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { SITE_NAME, LOGO_SRC } from "@/lib/branding";
+import { SITE_NAME, LOGO_SRC, CONTACT_PHONE, CONTACT_EMAIL, CONTACT_WHATSAPP } from "@/lib/branding";
 import { PACKAGE_NAV_GROUPS } from "@/lib/packageExperienceCategories";
 
 const Header = () => {
@@ -32,10 +32,7 @@ const Header = () => {
 
   // WhatsApp contact function
   const handleWhatsAppClick = () => {
-    const phoneNumber = "237683577676"; // WhatsApp number with country code
-    const message = "Hi! I'm interested in your tour packages. Can you please provide more information?";
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    window.open(CONTACT_WHATSAPP, '_blank');
   };
 
   return (
@@ -67,17 +64,17 @@ const Header = () => {
                 <div className="flex flex-col items-center space-y-0.5">
                   <div className="flex items-center space-x-1">
                     <Phone className="h-3 w-3" />
-                    <span> +237 6 83 57 76 76</span>
+                    <span>{CONTACT_PHONE}</span>
                   </div>
                 </div>
                 <div className="flex items-center space-x-1">
                   <Mail className="h-3 w-3" />
-                  <span className="truncate">sales@skygovoyages.com</span>
+                  <span className="truncate">{CONTACT_EMAIL}</span>
                 </div>
               </div>
               <div className="flex justify-center">
                 <a
-                  href="https://wa.me/237683577676"
+                  href={CONTACT_WHATSAPP}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-1 hover:text-green-400 transition-colors duration-200 text-xs"
@@ -96,14 +93,14 @@ const Header = () => {
               <div className="flex items-center space-x-4">
                 <div className="flex items-center space-x-2">
                   <Phone className="h-4 w-4" />
-                  <span>+237 6 83 57 76 76</span>
+                  <span>{CONTACT_PHONE}</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Mail className="h-4 w-4" />
-                  <span>sales@skygovoyages.com</span>
+                  <span>{CONTACT_EMAIL}</span>
                 </div>
                 <a
-                  href="https://wa.me/237683577676"
+                  href={CONTACT_WHATSAPP}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 hover:text-green-400 transition-colors duration-200"
@@ -122,10 +119,18 @@ const Header = () => {
         {/* Main navigation */}
         <nav className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
-            <Link href="/" className="flex items-center">
-              <span className="flex items-center justify-center w-44 h-14 md:w-56 md:h-16">
-                <img src={LOGO_SRC} alt={SITE_NAME} className="h-full w-full object-contain object-left" />
+            <Link href="/" className="flex items-center gap-3 sm:gap-4 group">
+              <span className="flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 shrink-0 bg-white/85 rounded-full p-0.5 shadow-sm border border-white/50 transition-transform duration-300 group-hover:scale-105">
+                <img src={LOGO_SRC} alt={SITE_NAME} className="h-full w-full object-contain" />
               </span>
+              <div className="flex flex-col">
+                <span className="text-base sm:text-lg md:text-xl font-[900] tracking-tight leading-tight uppercase text-white drop-shadow-md">
+                  SHREE SAI
+                </span>
+                <span className="text-[10px] sm:text-[11px] md:text-xs font-extrabold tracking-[0.2em] uppercase leading-none text-amber-300 drop-shadow-sm">
+                  TOURS &amp; TRAVELS
+                </span>
+              </div>
             </Link>
 
             {/* Desktop navigation */}

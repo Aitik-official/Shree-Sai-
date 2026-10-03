@@ -2,6 +2,7 @@ import connectDB from '../../../lib/mongodb';
 import Package from '../../../models/Package';
 import { isConnected } from '../../../lib/mongodb';
 import { PACKAGE_EXPERIENCE_CATEGORIES } from '../../../lib/packageExperienceCategories';
+import { SITE_NAME } from '../../../lib/branding';
 
 const categoryImage = (value) =>
   PACKAGE_EXPERIENCE_CATEGORIES.find((c) => c.value === value)?.heroImage ?? '';
@@ -10,10 +11,10 @@ const packageDefaults = (categoryValue, title, extras = {}) => {
   const category = PACKAGE_EXPERIENCE_CATEGORIES.find((c) => c.value === categoryValue);
   return {
     title,
-    subtitle: extras.subtitle ?? category?.heroSubtitle?.slice(0, 90) ?? 'Curated Explore 360 experience',
-    about: extras.about ?? category?.heroSubtitle ?? 'A curated adventure with Explore 360.',
+    subtitle: extras.subtitle ?? category?.heroSubtitle?.slice(0, 90) ?? `Curated ${SITE_NAME} experience`,
+    about: extras.about ?? category?.heroSubtitle ?? `A curated adventure with ${SITE_NAME}.`,
     services: extras.services ?? 'Guided experience, safety briefing, expert support',
-    tourDetails: extras.tourDetails ?? `Full ${category?.label ?? 'experience'} package with Explore 360.`,
+    tourDetails: extras.tourDetails ?? `Full ${category?.label ?? 'experience'} package with ${SITE_NAME}.`,
     price: extras.price ?? 4999,
     duration: extras.duration ?? '1 Day',
     location: extras.location ?? 'South Africa',
@@ -201,6 +202,64 @@ const samplePackages = [
     place: 'bir-billing',
     bookings: 11,
     rating: 4.8,
+  }),
+  packageDefaults('Domestic North — Spiti, Ladakh & North India', 'Varanasi Spiritual Heritage & Divine Ganga Aarti', {
+    subtitle: 'Private sunrise Ganges cruise, Kashi Vishwanath corridor & evening Aarti VIP boat',
+    about: 'Experience the mystical aura of Varanasi. Private sunrise and sunset boat rides on the Holy Ganges, Kashi Vishwanath temple corridor, ancient alleys, and Sarnath excursion.',
+    price: 14999,
+    duration: '3 Days / 2 Nights',
+    location: 'Varanasi, Uttar Pradesh, India',
+    place: 'varanasi',
+    packageType: 'domestic',
+    bookings: 28,
+    rating: 4.95,
+    isPopularPackage: true,
+    isFeaturedDestination: true,
+    images: [
+      {
+        url: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        alt: 'Divine Ganga Aarti at Dashashwamedh Ghat Varanasi'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1571536802807-30451e3955d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        alt: 'Sunrise boat ride on the sacred river Ganges Varanasi'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1627894483216-2138af692e32?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        alt: 'Kashi Vishwanath Temple corridor'
+      }
+    ]
+  }),
+  packageDefaults('International — Nepal, Vietnam, Thailand, Indonesia', 'Nepal Himalayan Explorer: Kathmandu & Pokhara', {
+    subtitle: 'Pashupatinath, Boudhanath, Phewa Lake Boating & Sarangkot Annapurna Sunrise',
+    about: 'Explore Kathmandu UNESCO World Heritage temples, scenic Pokhara, sunrise over the Annapurna mountain range, and boating on tranquil Phewa Lake.',
+    price: 34999,
+    duration: '6 Days / 5 Nights',
+    location: 'Kathmandu & Pokhara, Nepal',
+    place: 'nepal',
+    packageType: 'international',
+    bookings: 42,
+    rating: 4.94,
+    isPopularPackage: true,
+    isFeaturedDestination: true,
+    images: [
+      {
+        url: '/Nepal.webp',
+        alt: 'Majestic Nepal Himalayas and Pagoda Temples'
+      },
+      {
+        url: '/Kathmandu.jpg',
+        alt: 'Kathmandu Valley and Historical Temples'
+      },
+      {
+        url: '/1400__1502124997_Kathmandu6.webp',
+        alt: 'Kathmandu Durbar Square UNESCO Heritage Site'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1585016495481-91613a3ab1bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        alt: 'Serene Phewa Lake and Annapurna Mountain in Pokhara Nepal'
+      }
+    ]
   }),
 ];
 

@@ -6,25 +6,26 @@ import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react";
 import contactHeroImage from "@/assets/modify.webp";
 import BestPlaceSection from "@/components/BestPlaceSection";
+import { SITE_NAME, CONTACT_PHONE, CONTACT_PHONE_TEL, CONTACT_EMAIL, CONTACT_WHATSAPP, CONTACT_ADDRESS_LINE } from "@/lib/branding";
 
 const ContactPage = () => {
   const contactInfo = [
     {
       icon: Phone,
       title: "Phone Numbers",
-      details: ["+237 6 83 57 76 76"],
+      details: [CONTACT_PHONE],
       description: "Call us anytime for immediate assistance"
     },
     {
       icon: Mail,
       title: "Email Address",
-      details: ["sales@skygovoyages.com"],
+      details: [CONTACT_EMAIL],
       description: "Send us your queries and we'll respond within 24 hours"
     },
     {
       icon: MapPin,
       title: "Office Address",
-      details: ["Head Office — Navi Mumbai, Maharashtra 400706"],
+      details: [CONTACT_ADDRESS_LINE],
       description: "Visit our office for personalized travel planning"
     },
     {
@@ -97,12 +98,16 @@ const ContactPage = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   className="bg-green-600 hover:bg-green-700 text-white hover-lift flex items-center gap-2"
-                  onClick={() => window.open('https://wa.me/237683577676', '_blank')}
+                  onClick={() => window.open(CONTACT_WHATSAPP, '_blank')}
                 >
                   <MessageCircle className="h-5 w-5" />
                   WhatsApp
                 </Button>
-                <Button variant="outline" className="hover-lift flex items-center gap-2 border-secondary text-secondary hover:bg-secondary/10">
+                <Button 
+                  variant="outline" 
+                  className="hover-lift flex items-center gap-2 border-secondary text-secondary hover:bg-secondary/10"
+                  onClick={() => window.open(CONTACT_PHONE_TEL, '_self')}
+                >
                   <Phone className="h-5 w-5" />
                   Call Now
                 </Button>

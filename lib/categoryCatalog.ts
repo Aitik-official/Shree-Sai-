@@ -6,6 +6,7 @@ import {
   PackageNavGroup,
   getCategoryMatchValues,
 } from './packageExperienceCategories';
+import { SITE_NAME } from './branding';
 
 export interface CustomGroupEntry {
   slug: string;
@@ -210,7 +211,7 @@ export function buildCustomSubcategory(entry: CustomSubcategoryEntry): PackageEx
     slug: entry.slug,
     href: `/packages/category/${entry.slug}`,
     heroTitle: label,
-    heroSubtitle: entry.heroSubtitle?.trim() || `Explore ${label} with Explore 360`,
+    heroSubtitle: entry.heroSubtitle?.trim() || `Explore ${label} with ${SITE_NAME}`,
     heroImage: CATEGORY_IMAGES['yachts-sailing-cruises'],
     emptyMessage: `No ${label} packages yet`,
     accent: defaultAccentForGroup(entry.groupSlug),

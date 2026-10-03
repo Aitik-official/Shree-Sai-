@@ -11,6 +11,7 @@ import {
   GROUP_HERO_IMAGES,
   PACKAGE_EXPERIENCE_CATEGORIES,
 } from "@/lib/packageExperienceCategories";
+import { SITE_NAME } from "@/lib/branding";
 
 const PackagesPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -59,7 +60,7 @@ const PackagesPage = () => {
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/25 rounded-full px-5 py-2 mb-6">
               <Waves className="h-4 w-4 text-cyan-200" />
-              <span className="text-[10px] font-black uppercase tracking-[0.25em] text-white/90">Explore 360 Experiences</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.25em] text-white/90">{SITE_NAME} Experiences</span>
             </div>
             <h1 className="page-hero-title font-black mb-6 leading-none tracking-tight uppercase">
               Tour Packages

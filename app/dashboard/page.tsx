@@ -3184,7 +3184,7 @@ export default function DashboardPage() {
                         <Input 
                           value={siteSettings.whatsappUrl || ""}
                           onChange={(e) => setSiteSettings({...siteSettings, whatsappUrl: e.target.value})}
-                          placeholder="https://wa.me/237..."
+                          placeholder="https://wa.me/918765767140"
                           className="bg-white border-gray-100 rounded-xl h-11 text-xs font-medium"
                         />
                         {siteSettings.whatsappUrl && (

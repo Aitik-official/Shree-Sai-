@@ -257,7 +257,7 @@ export default function ExploreSectionSettingsPanel() {
                 <Input
                   value={form.explorePhone}
                   onChange={(e) => setForm((prev) => ({ ...prev, explorePhone: e.target.value }))}
-                  placeholder="+91 877919 2482"
+                  placeholder="+91 87657 67140"
                   className="bg-white border-gray-100 rounded-xl h-12 text-sm font-medium"
                 />
               </div>

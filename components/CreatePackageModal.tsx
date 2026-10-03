@@ -647,7 +647,7 @@ const CreatePackageModal = ({ isOpen, onClose, onPackageCreated }: CreatePackage
                 <div className="flex flex-wrap gap-3">
                   {externalImageUrls.map((url, i) => (
                     <div key={url} className="relative w-24 h-24 rounded-xl border border-gray-100 overflow-hidden group shadow-sm">
-                      <img src={url} className="w-full h-full object-cover" alt={`Package image ${i + 1}`} onError={(e) => { (e.target as HTMLImageElement).src = '/explore360-logo.png'; }} />
+                      <img src={url} className="w-full h-full object-cover" alt={`Package image ${i + 1}`} onError={(e) => { (e.target as HTMLImageElement).src = '/WhatsApp_Image_2026-10-03_at_4.30.52_PM-removebg-preview.png'; }} />
                       <button type="button" onClick={() => setExternalImageUrls(prev => prev.filter((_, idx) => idx !== i))} className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"><X className="h-3 w-3" /></button>
                     </div>
                   ))}

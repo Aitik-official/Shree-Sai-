@@ -9,7 +9,7 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useInquiryForm } from "../contexts/InquiryFormContext";
-import { SITE_NAME, LOGO_SRC } from "@/lib/branding";
+import { SITE_NAME, LOGO_SRC, CONTACT_PHONE, CONTACT_EMAIL, CONTACT_WHATSAPP } from "@/lib/branding";
 import { PACKAGE_EXPERIENCE_CATEGORIES } from "@/lib/packageExperienceCategories";
 
 interface SearchPackage {
@@ -254,11 +254,11 @@ const Navbar = () => {
               <div className="flex items-center space-x-4">
                 <div className="flex items-center space-x-2">
                   <Phone className="h-4 w-4" />
-                  <span>+237 6 83 57 76 76</span>
+                  <span>{CONTACT_PHONE}</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Mail className="h-4 w-4" />
-                  <span>sales@skygovoyages.com</span>
+                  <span>{CONTACT_EMAIL}</span>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
@@ -266,7 +266,7 @@ const Navbar = () => {
                   variant="ghost"
                   size="sm"
                   className="text-white hover:bg-gray-800"
-                  onClick={() => window.open('https://wa.me/237683577676', '_blank')}
+                  onClick={() => window.open(CONTACT_WHATSAPP, '_blank')}
                 >
                   <MessageCircle className="h-4 w-4 mr-2" />
                   Live Chat
@@ -287,13 +287,13 @@ const Navbar = () => {
           {/* Row 1: Phone Numbers */}
           <div className="flex items-center justify-center space-x-2 text-sm">
             <Phone className="h-4 w-4" />
-            <span>+237 6 83 57 76 76</span>
+            <span>{CONTACT_PHONE}</span>
           </div>
 
           {/* Row 2: Email */}
           <div className="flex items-center justify-center space-x-2 text-base mt-2">
             <Mail className="h-4 w-4" />
-            <span>sales@skygovoyages.com</span>
+            <span>{CONTACT_EMAIL}</span>
           </div>
 
           {/* Row 3: Live Chat & Login */}
@@ -302,7 +302,7 @@ const Navbar = () => {
               variant="ghost"
               size="sm"
               className="text-white hover:bg-gray-800 text-base px-4 py-2"
-              onClick={() => window.open('https://wa.me/237683577676', '_blank')}
+              onClick={() => window.open(CONTACT_WHATSAPP, '_blank')}
             >
               <MessageCircle className="h-5 w-5 mr-2" />
               Live Chat
@@ -320,16 +320,26 @@ const Navbar = () => {
       {/* Main Navigation */}
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-2">
-          {/* Logo */}
-          <Link href="/" className="flex items-center py-2">
-            <div className="relative w-44 h-14 md:w-56 md:h-16 flex items-center justify-center">
-              <Image
-                src={LOGO_SRC}
-                alt={`${SITE_NAME} Logo`}
-                fill
-                className="object-contain object-left"
-                priority
-              />
+          {/* Logo & Brand Title */}
+          <Link href="/" className="flex items-center gap-3 sm:gap-4 py-2 group">
+            <div className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 shrink-0 bg-white/85 rounded-full p-0.5 shadow-sm border border-gray-100 transition-transform duration-300 group-hover:scale-105">
+              <div className="relative w-full h-full">
+                <Image
+                  src={LOGO_SRC}
+                  alt={`${SITE_NAME} Logo`}
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-base sm:text-lg md:text-xl font-[900] tracking-tight leading-tight uppercase text-gray-900">
+                SHREE SAI
+              </span>
+              <span className="text-[10px] sm:text-[11px] md:text-xs font-extrabold tracking-[0.2em] uppercase leading-none text-[#bd9245]">
+                TOURS &amp; TRAVELS
+              </span>
             </div>
           </Link>
 
@@ -342,12 +352,12 @@ const Navbar = () => {
                     }`} />
                   <Input
                     type="text"
-                    placeholder="Search South African tours…"
+                    placeholder="Search tour packages…"
                     value={searchTerm}
                     onChange={handleSearchChange}
                     className={`pl-10 pr-4 py-2 w-full ${isInHeroSection
                       ? 'bg-transparent border-white/50 text-white placeholder-white/70 focus:border-white focus:ring-white'
-                      : 'bg-transparent border-gray-300 text-white placeholder-white/70 focus:border-primary focus:ring-primary'
+                      : 'bg-transparent border-gray-300 text-gray-900 placeholder-gray-400 focus:border-primary focus:ring-primary'
                       }`}
                   />
                   {isSearching && (

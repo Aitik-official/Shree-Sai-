@@ -1,3 +1,5 @@
+import { SITE_NAME } from './branding';
+
 export interface PackageMiniCategory {
   slug: string;
   label: string;
@@ -133,7 +135,7 @@ export const PACKAGE_NAV_GROUPS: PackageNavGroup[] = [
         slug: 'parasailing',
         href: '/packages/parasailing',
         heroTitle: 'Parasailing',
-        heroSubtitle: 'Soar above the coastline — coming soon to Explore 360',
+        heroSubtitle: `Soar above the coastline — coming soon to ${SITE_NAME}`,
         heroImage: img('parasailing'),
         emptyMessage: 'Parasailing experiences coming soon',
         accent: 'cyan',
@@ -309,7 +311,7 @@ export const PACKAGE_NAV_GROUPS: PackageNavGroup[] = [
         slug: 'upcoming-tours',
         href: '/packages/upcoming-tours',
         heroTitle: 'Upcoming Tours',
-        heroSubtitle: 'Featured and upcoming experiences — book your next adventure with Explore 360',
+        heroSubtitle: `Featured and upcoming experiences — book your next adventure with ${SITE_NAME}`,
         heroImage: img('upcoming-tours'),
         emptyMessage: 'No upcoming tours yet',
         accent: 'amber',
@@ -414,7 +416,7 @@ export function buildPackageImageForCategory(categoryValue: string, title?: stri
   return {
     public_id: `pkg-${category?.slug ?? 'experience'}`,
     url,
-    alt: title || category?.label || 'Explore 360 package',
+    alt: title || category?.label || `${SITE_NAME} package`,
   };
 }
 

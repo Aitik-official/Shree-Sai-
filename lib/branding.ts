@@ -1,25 +1,25 @@
-export const SITE_NAME = 'Explore 360';
-export const SITE_TAGLINE = 'The Experience Company';
-export const LOGO_SRC = '/explore360-logo.png';
+export const SITE_NAME = 'Shree Sai Tours & Travels';
+export const SITE_TAGLINE = 'Travel & Tour Experiences';
+export const LOGO_SRC = '/WhatsApp_Image_2026-10-03_at_4.30.52_PM-removebg-preview.png';
 export const SITE_DESCRIPTION =
-  'Sailing Adventures, Motorcycle Expeditions & Curated Experiences Across India & Beyond.';
+  'Tour Packages, Adventure Expeditions & Curated Travel Experiences Across India & Beyond.';
 
 export const HERO_SUBHEADING =
-  'From sailing adventures and motorcycle expeditions to handpicked outdoor experiences, we curate journeys that create stories, inspire exploration and become memories for a lifetime.';
+  'From family vacations and holiday tour packages to motorcycle expeditions and curated outdoor experiences, we craft journeys that create stories and memories for a lifetime.';
 
 export const BRAND_POSITIONING =
-  'Explore360 is The Experience Company, curating premium adventure expeditions and extraordinary experiences across India and beyond. From sailing adventures and motorcycle expeditions to handpicked outdoor escapes, every journey is thoughtfully crafted to inspire, challenge and create stories that stay with you long after the adventure ends.';
+  'Shree Sai Tours & Travels curates premium travel packages, adventure expeditions and extraordinary experiences across India and beyond. Every journey is thoughtfully crafted to inspire, delight and create stories that stay with you long after the adventure ends.';
 
 export const DEFAULT_ABOUT_TEXT = BRAND_POSITIONING;
 
 export const DEFAULT_SERVICES_TEXT =
   'Customized travel planning, Guided tours & local experiences, Group & family vacations, Luxury & adventure travel';
 
-export const CONTACT_EMAIL = 'info@explore360.co.in';
-export const CONTACT_PHONE = '+91 877919 2482';
-export const CONTACT_PHONE_TEL = 'tel:+918779192482';
-export const CONTACT_EMAIL_MAILTO = 'mailto:info@explore360.co.in';
-export const CONTACT_WHATSAPP = 'https://wa.me/918779192482';
+export const CONTACT_EMAIL = 'info@shreesaitours.com';
+export const CONTACT_PHONE = '+91 87657 67140';
+export const CONTACT_PHONE_TEL = 'tel:+918765767140';
+export const CONTACT_EMAIL_MAILTO = 'mailto:info@shreesaitours.com';
+export const CONTACT_WHATSAPP = 'https://wa.me/918765767140';
 export const CONTACT_ADDRESS = 'Navi Mumbai, Maharashtra 400706';
 export const CONTACT_ADDRESS_LINE = 'Head Office — Navi Mumbai, Maharashtra 400706';
 export const CONTACT_MAP_SEARCH =
@@ -29,12 +29,12 @@ export const CONTACT_MAP_EMBED =
 
 export const CONTACT_FAQS = [
   {
-    question: 'How do I book an experience with Explore360?',
+    question: 'How do I book an experience with Shree Sai Tours & Travels?',
     answer:
       "You can submit an enquiry through our website, WhatsApp or contact our team directly. We'll share the available dates, package details, inclusions and next steps to help you choose the experience that's right for you.",
   },
   {
-    question: "What's typically included in an Explore360 experience?",
+    question: "What's typically included in a tour package?",
     answer:
       'Each experience is different. Package inclusions vary depending on the destination and activity and may include accommodation, planned activities, local transfers or other services. The specific inclusions and exclusions are clearly mentioned for every experience before booking.',
   },
@@ -44,16 +44,18 @@ export const CONTACT_FAQS = [
       'Yes. Many of our experiences are suitable for solo travellers, friends, families or groups. Depending on the experience, you may have the option of joining a shared group or booking a private experience, subject to availability.',
   },
   {
-    question: 'How do you select your experience partners?',
+    question: 'How do you select your travel partners?',
     answer:
       'We collaborate with experienced operators and service providers to curate quality adventure and travel experiences. The choice of partners may vary based on the destination, activity, season and availability.',
   },
 ] as const;
 
-/** Replace legacy SkyGo branding in stored package copy when rendering. */
+/** Replace legacy branding in stored package copy when rendering. */
 export function brandedText(text?: string | null): string {
   if (!text) return '';
   return text
+    .replace(/Explore\s*360/gi, SITE_NAME)
+    .replace(/Explore360/gi, SITE_NAME)
     .replace(/Premium Sky\s*Go Tours/gi, `Premium ${SITE_NAME}`)
     .replace(/Premium Skygo Tours/gi, `Premium ${SITE_NAME}`)
     .replace(/Sky\s*Go/gi, SITE_NAME)

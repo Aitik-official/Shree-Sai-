@@ -193,19 +193,31 @@ const NavbarTravel = () => {
       : 'bg-transparent'
       }`}>
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16 sm:h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center relative z-50">
-            <div className="relative w-32 h-10 sm:w-40 sm:h-12 md:w-52 md:h-14">
-              <Image
-                src={LOGO_SRC}
-                alt={SITE_NAME}
-                fill
-                className={`object-contain object-left transition-all duration-300 ${
-                  useSolidNav ? '' : 'brightness-0 invert'
-                }`}
-                priority
-              />
+        <div className="flex items-center justify-between h-20 sm:h-24">
+          {/* Logo & Brand Title */}
+          <Link href="/" className="flex items-center gap-3 sm:gap-4 relative z-50 group py-1">
+            <div className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-[88px] lg:h-[88px] shrink-0 bg-white/85 rounded-full p-0.5 shadow-sm border border-white/50 transition-transform duration-300 group-hover:scale-105">
+              <div className="relative w-full h-full">
+                <Image
+                  src={LOGO_SRC}
+                  alt={SITE_NAME}
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <span className={`text-base sm:text-lg md:text-xl font-[900] tracking-tight leading-tight uppercase transition-colors ${
+                useSolidNav ? 'text-gray-900' : 'text-white drop-shadow-md'
+              }`}>
+                SHREE SAI
+              </span>
+              <span className={`text-[10px] sm:text-[11px] md:text-xs font-extrabold tracking-[0.2em] uppercase leading-none transition-colors ${
+                useSolidNav ? 'text-[#bd9245]' : 'text-amber-300 drop-shadow-sm'
+              }`}>
+                TOURS &amp; TRAVELS
+              </span>
             </div>
           </Link>
 

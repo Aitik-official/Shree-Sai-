@@ -41,33 +41,33 @@ export interface Testimonial {
 export const destinations: Destination[] = [
   {
     id: '1',
-    title: 'Cape Town Waterfront',
-    subtitle: 'Beauty at the foot of Table Mountain',
-    image: 'https://images.unsplash.com/photo-1580060839134-75a5edca2e99?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    link: '/packages/1',
+    title: 'Varanasi (Kashi)',
+    subtitle: 'Sacred Ganges Ghats, Kashi Vishwanath & Evening Aarti',
+    image: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    link: '/packages?search=Varanasi',
     type: 'package'
   },
   {
     id: '2',
-    title: 'Kruger National Park',
-    subtitle: 'Ultimate wildlife safari experience',
-    image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    link: '/packages',
+    title: 'Nepal Himalayas',
+    subtitle: 'Kathmandu Heritage, Pokhara & Annapurna Views',
+    image: '/Nepal.webp',
+    link: '/packages?search=Nepal',
     type: 'package'
   },
   {
     id: '3',
-    title: 'Johannesburg City',
-    subtitle: 'The vibrant heart of South Africa',
-    image: 'https://images.unsplash.com/photo-1549417229-aa67d3263c09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    title: 'Ladakh & Spiti',
+    subtitle: 'High-altitude mountain expeditions',
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     link: '/packages',
     type: 'package'
   },
   {
     id: '4',
-    title: 'Garden Route Scenic Drive',
-    subtitle: 'Majestic coastal landscapes',
-    image: 'https://images.unsplash.com/photo-1549417229-aa67d3263c09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    title: 'Rishikesh & Uttarakhand',
+    subtitle: 'River rafting, camping & divine serenity',
+    image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
     link: '/packages',
     type: 'package'
   }
@@ -76,29 +76,29 @@ export const destinations: Destination[] = [
 export const upcomingTrips: Trip[] = [
   {
     id: '1',
-    title: 'Cape Town coastal drive',
-    location: 'Western Cape',
-    price: 'from R2,999',
-    image: '/coast , south afirca.webp',
-    link: '/packages/1',
+    title: 'Varanasi Sunrise Boat & Aarti',
+    location: 'Varanasi, India',
+    price: 'from ₹14,999',
+    image: 'https://images.unsplash.com/photo-1571536802807-30451e3955d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    link: '/packages?search=Varanasi',
     type: 'package'
   },
   {
     id: '2',
-    title: 'Table Mountain Views',
-    location: 'Cape Town',
-    price: 'from R1,299',
-    image: '/cape town,south africa.webp',
-    link: '/packages/2',
+    title: 'Kathmandu & Pokhara Discovery',
+    location: 'Nepal',
+    price: 'from ₹34,999',
+    image: '/Kathmandu.jpg',
+    link: '/packages?search=Nepal',
     type: 'package'
   },
   {
     id: '3',
-    title: 'Cape Town City Lights',
-    location: 'Cape Town',
-    price: 'from R1,999',
-    image: '/cape town.webp',
-    link: '/packages/3',
+    title: 'Nepal Motorbike Expedition',
+    location: 'Mustang, Nepal',
+    price: 'from ₹58,999',
+    image: '/Nepal.webp',
+    link: '/packages?search=Nepal',
     type: 'package'
   }
 ];
@@ -106,52 +106,42 @@ export const upcomingTrips: Trip[] = [
 export const popularPackages: Package[] = [
   {
     id: '1',
-    title: 'Kruger Big Five Safari',
-    subtitle: '4 Days / 3 Nights Wild Adventure',
-    duration: '4 Days',
-    price: 'R15,999',
-    image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    link: '/packages',
+    title: 'Varanasi Spiritual Heritage & Divine Ganga Aarti',
+    subtitle: '3 Days / 2 Nights Sacred Kashi & Sarnath Tour',
+    duration: '3 Days',
+    price: '₹14,999',
+    image: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    link: '/packages?search=Varanasi',
     type: 'package'
   },
   {
     id: '2',
-    title: 'Cape Winelands Escape',
-    subtitle: 'Vineyards and scenic valley views',
-    duration: '3 Days',
-    price: 'R8,499',
-    image: 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    link: '/packages/2',
+    title: 'Kashi, Prayagraj & Ayodhya Triangle',
+    subtitle: '5 Days / 4 Nights Holy Pilgrimage Tour',
+    duration: '5 Days',
+    price: '₹24,999',
+    image: 'https://images.unsplash.com/photo-1571536802807-30451e3955d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    link: '/packages?search=Varanasi',
     type: 'package'
   },
   {
     id: '3',
-    title: 'Drakensberg Mountain Quest',
-    subtitle: 'Hike the peaks of South Africa',
-    duration: '5 Days',
-    price: 'R12,899',
-    image: 'https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    link: '/packages/3',
+    title: 'Nepal Himalayan Explorer: Kathmandu & Pokhara',
+    subtitle: '6 Days / 5 Nights Heritage & Lakes',
+    duration: '6 Days',
+    price: '₹34,999',
+    image: '/Nepal.webp',
+    link: '/packages?search=Nepal',
     type: 'package'
   },
   {
     id: '4',
-    title: 'Johannesburg Heritage',
-    subtitle: 'Experience the City of Gold',
-    duration: '6 Days',
-    price: 'R18,999',
-    image: 'https://images.unsplash.com/photo-1549417229-aa67d3263c09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    link: '/packages',
-    type: 'package'
-  },
-  {
-    id: '5',
-    title: 'Table Mountain Explorer',
-    subtitle: 'Urban culture and coastal beauty',
-    duration: '5 Days',
-    price: 'R11,499',
-    image: '/cape town,south africa.webp',
-    link: '/packages/5',
+    title: 'Nepal Himalayan Motorbike Expedition',
+    subtitle: '8 Days / 7 Nights Mustang Riding Adventure',
+    duration: '8 Days',
+    price: '₹58,999',
+    image: 'https://images.unsplash.com/photo-1605640840605-14ac1855827b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    link: '/packages?search=Nepal',
     type: 'package'
   }
 ];

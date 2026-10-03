@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import { TERMS_PAGE_TITLE, TERMS_SECTIONS } from '@/lib/termsContent';
-import { CONTACT_EMAIL, CONTACT_EMAIL_MAILTO, CONTACT_PHONE, CONTACT_PHONE_TEL } from '@/lib/branding';
+import { SITE_NAME, CONTACT_EMAIL, CONTACT_EMAIL_MAILTO, CONTACT_PHONE, CONTACT_PHONE_TEL } from '@/lib/branding';
 
 export const metadata = {
-  title: 'Terms of Use, Disclaimer & Limitation of Liability | Explore360',
+  title: `Terms of Use, Disclaimer & Limitation of Liability | ${SITE_NAME}`,
   description:
-    'Explore360 Terms of Use, Disclaimer and Limitation of Liability. Read our booking facilitator terms, assumption of risk, and liability policies.',
+    `${SITE_NAME} Terms of Use, Disclaimer and Limitation of Liability. Read our booking facilitator terms, assumption of risk, and liability policies.`,
 };
 
 export default function TermsPage() {
@@ -34,7 +34,7 @@ export default function TermsPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <p className="text-sm text-gray-500 mb-10 leading-relaxed">
-              Please read these terms carefully before making an enquiry or booking. By using Explore360
+              Please read these terms carefully before making an enquiry or booking. By using {SITE_NAME}
               services, you agree to be bound by the terms below.
             </p>
 
@@ -69,7 +69,7 @@ export default function TermsPage() {
             <div className="mt-14 rounded-2xl border border-gray-100 bg-[#faf8f3] p-6 md:p-8">
               <h3 className="text-lg font-black text-[#1e1f44] mb-3">Need clarification?</h3>
               <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-4">
-                For questions about these Terms & Conditions, contact Explore360:
+                For questions about these Terms & Conditions, contact {SITE_NAME}:
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 text-sm font-semibold">
                 <a href={CONTACT_EMAIL_MAILTO} className="text-[#bd9245] hover:underline">

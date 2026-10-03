@@ -9,6 +9,7 @@ import Image from 'next/image';
 import {
   getCategoryBySlug,
 } from '@/lib/packageExperienceCategories';
+import { SITE_NAME } from '@/lib/branding';
 
 const WATER_GROUP_HREF = '/packages/water';
 const WATER_HERO = getCategoryBySlug('yachts-sailing-cruises')?.heroImage ?? '/yaht/1629138.jpg';
@@ -99,7 +100,7 @@ const UpcomingTrips = ({
     data.map((pkg) => ({
       id: pkg._id,
       title: pkg.title,
-      location: pkg.location || pkg.place || 'Explore 360',
+      location: pkg.location || pkg.place || SITE_NAME,
       image: pkg.images?.[0]?.url || WATER_HERO,
     }));
 

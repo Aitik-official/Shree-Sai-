@@ -16,6 +16,7 @@ import { upcomingToursPackageSeedData } from '@/lib/umlingLaPackageData';
 import { useCategoryLabels } from '@/contexts/CategoryLabelsContext';
 import { useInquiryForm } from '@/contexts/InquiryFormContext';
 import CategoryHeroBackground from '@/components/CategoryHeroBackground';
+import { SITE_NAME } from '@/lib/branding';
 
 interface PackageItem {
   _id: string;
@@ -138,7 +139,7 @@ export default function PackageGroupPage({ group: baseGroup }: PackageGroupPageP
             <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/25 rounded-full px-5 py-2 mb-6">
               <Compass className={`h-4 w-4 ${styles.icon}`} />
               <span className="text-[10px] font-black uppercase tracking-[0.25em] text-white/90">
-                Explore 360
+                {SITE_NAME}
               </span>
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-5 tracking-tight uppercase">{group.label}</h1>

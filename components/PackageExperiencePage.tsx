@@ -16,6 +16,7 @@ import { useCategoryLabels } from '@/contexts/CategoryLabelsContext';
 import { getResolvedCategoryBySlugFromCatalog } from '@/lib/categoryCatalog';
 import { useInquiryForm } from '@/contexts/InquiryFormContext';
 import CategoryHeroBackground from '@/components/CategoryHeroBackground';
+import { SITE_NAME } from '@/lib/branding';
 
 interface PackageItem {
   _id: string;
@@ -157,7 +158,7 @@ export default function PackageExperiencePage({ category: baseCategory, miniCate
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center mb-10">
               <div>
-                <p className={`text-[10px] font-black uppercase tracking-[0.3em] ${styles.muted} mb-1`}>Explore 360</p>
+                <p className={`text-[10px] font-black uppercase tracking-[0.3em] ${styles.muted} mb-1`}>{SITE_NAME}</p>
                 <h2 className="text-2xl md:text-3xl font-black text-[#111827] uppercase tracking-tight">{category.label}</h2>
               </div>
               <div className="relative w-full sm:w-80">

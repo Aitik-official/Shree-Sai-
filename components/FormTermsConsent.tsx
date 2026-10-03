@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { Checkbox } from '@/components/ui/checkbox';
 import { cn } from '@/lib/utils';
+import { SITE_NAME } from '@/lib/branding';
 
 interface FormTermsConsentProps {
   checked: boolean;
@@ -28,7 +29,7 @@ export default function FormTermsConsent({
         className={cn('mt-0.5 border-[#bd9245] data-[state=checked]:bg-[#bd9245]', error && 'border-red-500')}
       />
       <label htmlFor={id} className="text-xs sm:text-sm text-gray-600 leading-relaxed cursor-pointer select-none">
-        I have read and agree to the Explore360{' '}
+        I have read and agree to the {SITE_NAME}{' '}
         <Link
           href="/terms"
           target="_blank"
@@ -38,7 +39,7 @@ export default function FormTermsConsent({
         >
           Terms & Conditions, Disclaimer and Privacy Policy
         </Link>
-        . I understand that Explore360 acts as a booking facilitator for experiences operated by independent
+        . I understand that {SITE_NAME} acts as a booking facilitator for experiences operated by independent
         third-party service providers, and that the applicable activity-specific terms and safety guidelines will
         be shared prior to booking.
       </label>
