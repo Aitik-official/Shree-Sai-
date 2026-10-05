@@ -147,7 +147,7 @@ const EditBannerModal = ({ isOpen, onClose, onBannerUpdated, banner }: EditBanne
                         <div className="space-y-2">
                             <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">Banner Title</label>
                             <Textarea 
-                                placeholder="e.g. ADVENTURES BEGIN WITH&#10;SHREE SAI TOURS & TRAVELS" 
+                                placeholder="e.g. ADVENTURES BEGIN WITH&#10;SHRI SAI TOURS & TRAVELS" 
                                 value={formData.title} 
                                 onChange={e => handleInputChange("title", e.target.value)} 
                                 className="min-h-[100px] rounded-xl resize-none" 

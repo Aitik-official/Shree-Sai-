@@ -18,6 +18,7 @@ export function getCategoryLabelOverridesFromSettings(
     miniCategoryLabelOverrides?: Record<string, string>;
     hiddenBuiltinMiniCategories?: string[];
     hiddenBuiltinSubcategories?: string[];
+    hiddenBuiltinGroups?: string[];
   } | null
 ): CategoryCatalogSettings {
   return {
@@ -29,6 +30,7 @@ export function getCategoryLabelOverridesFromSettings(
     miniCategoryLabels: settings?.miniCategoryLabelOverrides ?? {},
     hiddenBuiltinMiniCategories: settings?.hiddenBuiltinMiniCategories ?? [],
     hiddenBuiltinSubcategories: settings?.hiddenBuiltinSubcategories ?? [],
+    hiddenBuiltinGroups: settings?.hiddenBuiltinGroups ?? [],
   };
 }
 

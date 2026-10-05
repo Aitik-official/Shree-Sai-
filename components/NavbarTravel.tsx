@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Search, Menu, X, ChevronDown, ChevronRight } from "lucide-react";
+import { Search, Menu, X, ChevronDown, ChevronRight, Compass } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
@@ -11,6 +11,19 @@ import { useInquiryForm } from "../contexts/InquiryFormContext";
 import { SITE_NAME, LOGO_SRC } from "@/lib/branding";
 import { PACKAGE_NAV_GROUPS, getGroupPageHref } from "@/lib/packageExperienceCategories";
 import { useCategoryLabels } from "@/contexts/CategoryLabelsContext";
+
+interface NavPackageItem {
+  _id: string;
+  title: string;
+  subtitle?: string;
+  duration?: string;
+  location?: string;
+  place?: string;
+  packageCategory?: string;
+  price?: number;
+  rating?: number;
+  images?: Array<{ url: string; alt?: string }>;
+}
 
 type NavSubItem = { name: string; href: string; isFuture?: boolean };
 type NavItem = {
@@ -22,6 +35,56 @@ type NavItem = {
 
 const NavbarTravel = () => {
   const { navGroups } = useCategoryLabels();
+  const [allPackages, setAllPackages] = useState<NavPackageItem[]>([]);
+
+  useEffect(() => {
+    let isMounted = true;
+    fetch('/api/packages')
+      .then((res) => res.json())
+      .then((result) => {
+        if (isMounted && result.success && Array.isArray(result.data)) {
+          setAllPackages(result.data);
+        }
+      })
+      .catch((err) => console.error('Failed to load navbar packages:', err));
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const generatePackageSlug = (title: string, id: string) => {
+    const safeTitle = (title || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)+/g, '');
+    return safeTitle ? `${safeTitle}-${id}` : id;
+  };
+
+  const getPackagesForGroup = useCallback(
+    (groupSlug?: string, groupLabel?: string) => {
+      if (!groupSlug && !groupLabel) return [];
+      const s = (groupSlug || '').toLowerCase();
+      const l = (groupLabel || '').toLowerCase();
+      return allPackages.filter((pkg) => {
+        const cat = (pkg.packageCategory || '').toLowerCase();
+        const place = (pkg.place || '').toLowerCase();
+        const loc = (pkg.location || '').toLowerCase();
+        const title = (pkg.title || '').toLowerCase();
+        return (
+          cat === s ||
+          cat === l ||
+          place === s ||
+          place === l ||
+          loc.includes(s) ||
+          loc.includes(l) ||
+          title.includes(s) ||
+          title.includes(l)
+        );
+      });
+    },
+    [allPackages]
+  );
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -211,7 +274,7 @@ const NavbarTravel = () => {
               <span className={`text-base sm:text-lg md:text-xl font-[900] tracking-tight leading-tight uppercase transition-colors ${
                 useSolidNav ? 'text-gray-900' : 'text-white drop-shadow-md'
               }`}>
-                SHREE SAI
+                SHRI SAI
               </span>
               <span className={`text-[10px] sm:text-[11px] md:text-xs font-extrabold tracking-[0.2em] uppercase leading-none transition-colors ${
                 useSolidNav ? 'text-[#bd9245]' : 'text-amber-300 drop-shadow-sm'
@@ -332,44 +395,105 @@ const NavbarTravel = () => {
                                   </Link>
                                 ) : null}
                               </div>
-                              <div className="px-2 space-y-0.5">
-                                {activeGroup?.items.map((sub) => {
-                                  const isSubActive = activeSub?.slug === sub.slug;
-                                  const hasMinis = Boolean(sub.miniItems?.length);
-                                  return (
-                                    <div
-                                      key={sub.slug}
-                                      className={`rounded-xl transition-colors ${
-                                        isSubActive ? 'bg-[#bd9245]/10' : 'hover:bg-gray-50'
-                                      }`}
-                                      onMouseEnter={() => setHoveredPackageSub(sub.slug)}
-                                    >
+                                <div className="px-2 space-y-1">
+                                  {/* Subcategories */}
+                                  {activeGroup?.items.map((sub) => {
+                                    const isSubActive = activeSub?.slug === sub.slug;
+                                    const hasMinis = Boolean(sub.miniItems?.length);
+                                    return (
+                                      <div
+                                        key={sub.slug}
+                                        className={`rounded-xl transition-colors ${
+                                          isSubActive ? 'bg-[#bd9245]/10' : 'hover:bg-gray-50'
+                                        }`}
+                                        onMouseEnter={() => setHoveredPackageSub(sub.slug)}
+                                      >
+                                        <Link
+                                          href={sub.href}
+                                          onClick={() => closeDropdown()}
+                                          className={`flex items-center justify-between gap-2 px-3 py-2.5 text-sm ${
+                                            isSubActive
+                                              ? 'text-[#bd9245] font-semibold'
+                                              : 'text-gray-700'
+                                          }`}
+                                        >
+                                          <span className="leading-snug">{sub.label}</span>
+                                          <span className="flex items-center gap-1.5 shrink-0">
+                                            {sub.isFuture ? (
+                                              <span className="text-[9px] font-bold uppercase tracking-wide text-amber-700/80 bg-amber-50 px-1.5 py-0.5 rounded">
+                                                Soon
+                                              </span>
+                                            ) : null}
+                                            {hasMinis ? (
+                                              <ChevronRight className="h-4 w-4 text-gray-300" />
+                                            ) : null}
+                                          </span>
+                                        </Link>
+                                      </div>
+                                    );
+                                  })}
+
+                                  {/* Assigned Packages */}
+                                  {getPackagesForGroup(activeGroup?.slug, activeGroup?.label).map((pkg) => {
+                                    const pkgSlug = generatePackageSlug(pkg.title, pkg._id);
+                                    const pkgHref = `/packages/${pkgSlug}`;
+                                    const isPkgActive = pathname === pkgHref || pathname?.includes(pkg._id);
+                                    return (
                                       <Link
-                                        href={sub.href}
+                                        key={pkg._id}
+                                        href={pkgHref}
                                         onClick={() => closeDropdown()}
-                                        className={`flex items-center justify-between gap-2 px-3 py-2.5 text-sm ${
-                                          isSubActive
-                                            ? 'text-[#bd9245] font-semibold'
-                                            : 'text-gray-700'
+                                        className={`flex items-center gap-3 p-2 rounded-xl transition-all ${
+                                          isPkgActive ? 'bg-[#bd9245]/10 text-[#bd9245]' : 'hover:bg-gray-50 text-gray-800'
                                         }`}
                                       >
-                                        <span className="leading-snug">{sub.label}</span>
-                                        <span className="flex items-center gap-1.5 shrink-0">
-                                          {sub.isFuture ? (
-                                            <span className="text-[9px] font-bold uppercase tracking-wide text-amber-700/80 bg-amber-50 px-1.5 py-0.5 rounded">
-                                              Soon
-                                            </span>
-                                          ) : null}
-                                          {hasMinis ? (
-                                            <ChevronRight className="h-4 w-4 text-gray-300" />
-                                          ) : null}
-                                        </span>
+                                        {pkg.images && pkg.images.length > 0 && pkg.images[0].url ? (
+                                          <div className="w-12 h-12 relative rounded-lg overflow-hidden shrink-0 bg-gray-100">
+                                            <Image
+                                              src={pkg.images[0].url}
+                                              alt={pkg.images[0].alt || pkg.title}
+                                              fill
+                                              className="object-cover"
+                                            />
+                                          </div>
+                                        ) : (
+                                          <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center shrink-0 text-gray-400">
+                                            <Compass className="w-5 h-5 text-[#bd9245]" />
+                                          </div>
+                                        )}
+                                        <div className="min-w-0 flex-1">
+                                          <h4 className="text-xs font-bold truncate leading-snug">{pkg.title}</h4>
+                                          <div className="flex items-center gap-2 mt-0.5 text-[11px] text-gray-500">
+                                            {pkg.duration && <span>{pkg.duration}</span>}
+                                            {pkg.duration && pkg.rating && <span>•</span>}
+                                            {pkg.rating ? (
+                                              <span className="flex items-center gap-0.5 text-amber-600 font-medium">
+                                                ★ {pkg.rating}
+                                              </span>
+                                            ) : null}
+                                          </div>
+                                        </div>
+                                        <ChevronRight className="h-4 w-4 text-gray-300 shrink-0" />
+                                      </Link>
+                                    );
+                                  })}
+
+                                  {/* Empty fallback if neither subcategories nor packages exist */}
+                                  {(!activeGroup?.items || activeGroup.items.length === 0) &&
+                                    getPackagesForGroup(activeGroup?.slug, activeGroup?.label).length === 0 && (
+                                    <div className="px-4 py-8 text-center">
+                                      <p className="text-xs text-gray-500 mb-3 font-medium">Explore all curated {activeGroup?.label} packages</p>
+                                      <Link
+                                        href={getGroupPageHref(activeGroup?.slug || '')}
+                                        onClick={() => closeDropdown()}
+                                        className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-[#111827] text-white text-xs font-bold rounded-xl hover:bg-[#bd9245] transition-colors shadow-sm"
+                                      >
+                                        Explore {activeGroup?.label} <ChevronRight className="h-3.5 w-3.5" />
                                       </Link>
                                     </div>
-                                  );
-                                })}
+                                  )}
+                                </div>
                               </div>
-                            </div>
 
                             {/* Column 3 — Only when mini options exist */}
                             {showMiniColumn ? (
@@ -650,60 +774,82 @@ const NavbarTravel = () => {
                             </button>
                           </div>
 
-                          {groupOpen &&
-                            group.items.map((sub) => {
-                              const hasMinis = Boolean(sub.miniItems?.length);
-                              const subOpen = mobileOpenSubs.includes(sub.slug);
-                              return (
-                                <div key={sub.href}>
-                                  <div className="flex items-center">
-                                    <Link
-                                      href={sub.href}
-                                      className={`flex-1 pl-10 pr-2 py-2 text-sm rounded-lg transition-colors ${
-                                        pathname === sub.href
-                                          ? 'text-[#bd9245] font-semibold bg-[#bd9245]/5'
-                                          : 'text-gray-600 hover:bg-gray-100'
-                                      }`}
-                                      onClick={() => setIsMenuOpen(false)}
-                                    >
-                                      {sub.label}
-                                      {sub.isFuture ? ' (Future)' : ''}
-                                    </Link>
-                                    {hasMinis && (
-                                      <button
-                                        type="button"
-                                        aria-label={subOpen ? `Collapse ${sub.label}` : `Expand ${sub.label}`}
-                                        aria-expanded={subOpen}
-                                        onClick={() => toggleMobileSub(sub.slug)}
-                                        className="px-3 py-2 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors"
-                                      >
-                                        <ChevronDown
-                                          className={`h-4 w-4 transition-transform duration-200 ${
-                                            subOpen ? 'rotate-180' : ''
-                                          }`}
-                                        />
-                                      </button>
-                                    )}
-                                  </div>
-                                  {hasMinis &&
-                                    subOpen &&
-                                    sub.miniItems!.map((mini) => (
+                          {groupOpen && (
+                            <div className="space-y-1">
+                              {getPackagesForGroup(group.slug, group.label).map((pkg) => {
+                                const pkgSlug = generatePackageSlug(pkg.title, pkg._id);
+                                const pkgHref = `/packages/${pkgSlug}`;
+                                return (
+                                  <Link
+                                    key={pkg._id}
+                                    href={pkgHref}
+                                    className={`flex items-center gap-2 pl-10 pr-3 py-1.5 text-xs rounded-lg transition-colors ${
+                                      pathname === pkgHref || pathname?.includes(pkg._id)
+                                        ? 'text-[#bd9245] font-semibold bg-[#bd9245]/5'
+                                        : 'text-gray-600 hover:bg-gray-100'
+                                    }`}
+                                    onClick={() => setIsMenuOpen(false)}
+                                  >
+                                    <span className="w-1.5 h-1.5 rounded-full bg-[#bd9245] shrink-0" />
+                                    <span className="truncate">{pkg.title}</span>
+                                  </Link>
+                                );
+                              })}
+                              {group.items.map((sub) => {
+                                const hasMinis = Boolean(sub.miniItems?.length);
+                                const subOpen = mobileOpenSubs.includes(sub.slug);
+                                return (
+                                  <div key={sub.href}>
+                                    <div className="flex items-center">
                                       <Link
-                                        key={mini.slug}
-                                        href={mini.href}
-                                        className={`block pl-14 pr-4 py-1.5 text-xs rounded-lg transition-colors ${
-                                          pathname === mini.href
+                                        href={sub.href}
+                                        className={`flex-1 pl-10 pr-2 py-2 text-sm rounded-lg transition-colors ${
+                                          pathname === sub.href
                                             ? 'text-[#bd9245] font-semibold bg-[#bd9245]/5'
-                                            : 'text-gray-500 hover:bg-gray-100'
+                                            : 'text-gray-600 hover:bg-gray-100'
                                         }`}
                                         onClick={() => setIsMenuOpen(false)}
                                       >
-                                        {mini.label}
+                                        {sub.label}
+                                        {sub.isFuture ? ' (Future)' : ''}
                                       </Link>
-                                    ))}
-                                </div>
-                              );
-                            })}
+                                      {hasMinis && (
+                                        <button
+                                          type="button"
+                                          aria-label={subOpen ? `Collapse ${sub.label}` : `Expand ${sub.label}`}
+                                          aria-expanded={subOpen}
+                                          onClick={() => toggleMobileSub(sub.slug)}
+                                          className="px-3 py-2 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors"
+                                        >
+                                          <ChevronDown
+                                            className={`h-4 w-4 transition-transform duration-200 ${
+                                              subOpen ? 'rotate-180' : ''
+                                            }`}
+                                          />
+                                        </button>
+                                      )}
+                                    </div>
+                                    {hasMinis &&
+                                      subOpen &&
+                                      sub.miniItems!.map((mini) => (
+                                        <Link
+                                          key={mini.slug}
+                                          href={mini.href}
+                                          className={`block pl-14 pr-4 py-1.5 text-xs rounded-lg transition-colors ${
+                                            pathname === mini.href
+                                              ? 'text-[#bd9245] font-semibold bg-[#bd9245]/5'
+                                              : 'text-gray-500 hover:bg-gray-100'
+                                          }`}
+                                          onClick={() => setIsMenuOpen(false)}
+                                        >
+                                          {mini.label}
+                                        </Link>
+                                      ))}
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          )}
                         </div>
                       );
                     })}

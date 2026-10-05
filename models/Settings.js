@@ -32,6 +32,7 @@ const SettingsSchema = new mongoose.Schema({
   miniCategoryLabelOverrides: { type: mongoose.Schema.Types.Mixed, default: {} },
   hiddenBuiltinMiniCategories: { type: [String], default: [] },
   hiddenBuiltinSubcategories: { type: [String], default: [] },
+  hiddenBuiltinGroups: { type: [String], default: [] },
 
   // Offer popup (site-wide)
   offerPopupEnabled: { type: Boolean, default: false },
@@ -64,7 +65,7 @@ const SettingsSchema = new mongoose.Schema({
   exploreCtaLabel: { type: String, default: 'Book Now' },
   explorePhone: { type: String, default: '+91 87657 67140' },
   explorePhoneLabel: { type: String, default: 'CALL NOW' },
-}, { timestamps: true });
+}, { timestamps: true, strict: false });
 
 if (mongoose.models.Settings) {
   delete mongoose.models.Settings;

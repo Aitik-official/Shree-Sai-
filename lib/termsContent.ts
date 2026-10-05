@@ -4,45 +4,45 @@ export type TermsSection = {
   bullets?: string[];
 };
 
-export const TERMS_PAGE_TITLE = 'Shree Sai Tours & Travels – Terms of Use, Disclaimer & Limitation of Liability';
+export const TERMS_PAGE_TITLE = 'SHRI SAI TOURS & TRAVELS – Terms of Use, Disclaimer & Limitation of Liability';
 
 export const TERMS_SECTIONS: TermsSection[] = [
   {
     title: 'Acceptance of Terms',
     paragraphs: [
-      'By accessing the Shree Sai Tours & Travels website or promotions across any platform or media, by contacting us through any medium, requesting information, making an enquiry, making a payment or booking any experience through Shree Sai Tours & Travels, you acknowledge that you have read, understood and agreed to be bound by these Terms & Conditions, Disclaimer, Privacy Policy and any activity-specific terms communicated to you.',
+      'By accessing the SHRI SAI TOURS & TRAVELS website or promotions across any platform or media, by contacting us through any medium, requesting information, making an enquiry, making a payment or booking any experience through SHRI SAI TOURS & TRAVELS, you acknowledge that you have read, understood and agreed to be bound by these Terms & Conditions, Disclaimer, Privacy Policy and any activity-specific terms communicated to you.',
       'If you do not agree with these terms, you should not proceed with any booking or use of our services.',
     ],
   },
   {
     title: 'Eligibility',
     paragraphs: [
-      'By using our website or booking any experience through Shree Sai Tours & Travels, you represent that you are at least 18 years of age or are booking under the supervision and consent of a parent or legal guardian. You further confirm that you have the legal capacity to enter into a binding agreement under the applicable laws of India.',
+      'By using our website or booking any experience through SHRI SAI TOURS & TRAVELS, you represent that you are at least 18 years of age or are booking under the supervision and consent of a parent or legal guardian. You further confirm that you have the legal capacity to enter into a binding agreement under the applicable laws of India.',
     ],
   },
   {
     title: 'Accuracy of Information',
     paragraphs: [
-      'You agree to provide complete, accurate and up-to-date information while making enquiries or bookings. Shree Sai Tours & Travels shall not be responsible for any loss, delay or inconvenience arising from incorrect, incomplete or misleading information provided by you.',
+      'You agree to provide complete, accurate and up-to-date information while making enquiries or bookings. SHRI SAI TOURS & TRAVELS shall not be responsible for any loss, delay or inconvenience arising from incorrect, incomplete or misleading information provided by you.',
     ],
   },
   {
     title: 'User Responsibilities',
     paragraphs: [
-      'You agree to comply with all applicable laws, regulations, safety instructions and operational guidelines issued by Shree Sai Tours & Travels and the respective service provider. You shall conduct yourself responsibly throughout the experience and shall not engage in any unlawful, unsafe or disruptive behaviour that may endanger yourself, other participants or service providers.',
+      'You agree to comply with all applicable laws, regulations, safety instructions and operational guidelines issued by SHRI SAI TOURS & TRAVELS and the respective service provider. You shall conduct yourself responsibly throughout the experience and shall not engage in any unlawful, unsafe or disruptive behaviour that may endanger yourself, other participants or service providers.',
     ],
   },
   {
     title: 'Health & Fitness Declaration',
     paragraphs: [
-      'You are solely responsible for assessing your physical and medical fitness before participating in any activity. You must disclose any relevant medical conditions, disabilities or special requirements that may affect your participation. Shree Sai Tours & Travels and its service providers reserve the right to refuse participation if an activity is considered unsafe for you or others.',
+      'You are solely responsible for assessing your physical and medical fitness before participating in any activity. You must disclose any relevant medical conditions, disabilities or special requirements that may affect your participation. SHRI SAI TOURS & TRAVELS and its service providers reserve the right to refuse participation if an activity is considered unsafe for you or others.',
     ],
   },
   {
     title: 'Nature of Our Services',
     paragraphs: [
-      'Shree Sai Tours & Travels is an adventure, travel and experiences platform that curates, promotes, coordinates and facilitates bookings for experiences offered by independent third-party operators and service providers.',
-      'Unless expressly stated otherwise, Shree Sai Tours & Travels does not own, operate, manage or control the boats, yachts, aircraft, helicopters, vehicles, camps, hotels, adventure equipment, activities or destinations offered through our platform. We act solely as an organiser, facilitator, booking partner and intermediary between customers and independent service providers.',
+      'SHRI SAI TOURS & TRAVELS is an adventure, travel and experiences platform that curates, promotes, coordinates and facilitates bookings for experiences offered by independent third-party operators and service providers.',
+      'Unless expressly stated otherwise, SHRI SAI TOURS & TRAVELS does not own, operate, manage or control the boats, yachts, aircraft, helicopters, vehicles, camps, hotels, adventure equipment, activities or destinations offered through our platform. We act solely as an organiser, facilitator, booking partner and intermediary between customers and independent service providers.',
     ],
   },
   {
@@ -61,7 +61,7 @@ export const TERMS_SECTIONS: TermsSection[] = [
   {
     title: 'Independent Contractor Relationship',
     paragraphs: [
-      'All service providers listed or promoted by Shree Sai Tours & Travels operate as independent contractors. Nothing contained in these Terms shall be construed as creating any partnership, joint venture, agency, employment or franchise relationship between Shree Sai Tours & Travels and any service provider. Shree Sai Tours & Travels acts solely as a booking facilitator and coordinator and is not responsible for the day-to-day operation or execution of the services provided by independent operators.',
+      'All service providers listed or promoted by SHRI SAI TOURS & TRAVELS operate as independent contractors. Nothing contained in these Terms shall be construed as creating any partnership, joint venture, agency, employment or franchise relationship between SHRI SAI TOURS & TRAVELS and any service provider. SHRI SAI TOURS & TRAVELS acts solely as a booking facilitator and coordinator and is not responsible for the day-to-day operation or execution of the services provided by independent operators.',
     ],
   },
   {
@@ -74,32 +74,32 @@ export const TERMS_SECTIONS: TermsSection[] = [
   {
     title: 'Pricing & Availability',
     paragraphs: [
-      'All prices, itineraries, schedules, availability and inclusions are subject to change without prior notice until a booking has been confirmed. Shree Sai Tours & Travels does not guarantee the availability of any experience until confirmed by the respective service provider.',
+      'All prices, itineraries, schedules, availability and inclusions are subject to change without prior notice until a booking has been confirmed. SHRI SAI TOURS & TRAVELS does not guarantee the availability of any experience until confirmed by the respective service provider.',
     ],
   },
   {
     title: 'Bookings, Payments & Cancellations',
     paragraphs: [
-      'Bookings are subject to availability and confirmation by the respective service provider. Cancellation, refund, rescheduling and payment policies may vary between activities and operators and will be communicated at the time of booking. Shree Sai Tours & Travels reserves the right to cancel or modify bookings where necessary due to operational, safety or unforeseen circumstances.',
+      'Bookings are subject to availability and confirmation by the respective service provider. Cancellation, refund, rescheduling and payment policies may vary between activities and operators and will be communicated at the time of booking. SHRI SAI TOURS & TRAVELS reserves the right to cancel or modify bookings where necessary due to operational, safety or unforeseen circumstances.',
     ],
   },
   {
     title: 'Force Majeure',
     paragraphs: [
-      'Shree Sai Tours & Travels shall not be liable for any delay, modification, cancellation or failure to perform arising from events beyond its reasonable control, including but not limited to adverse weather conditions, natural disasters, government restrictions, civil unrest, strikes, pandemics, technical failures or any other force majeure event.',
+      'SHRI SAI TOURS & TRAVELS shall not be liable for any delay, modification, cancellation or failure to perform arising from events beyond its reasonable control, including but not limited to adverse weather conditions, natural disasters, government restrictions, civil unrest, strikes, pandemics, technical failures or any other force majeure event.',
     ],
   },
   {
     title: 'Limitation of Liability',
     paragraphs: [
-      'To the fullest extent permitted by applicable law, Shree Sai Tours & Travels shall not be liable for any injury, accident, illness, death, loss, theft, damage, delay, cancellation, schedule change, weather disruption, force majeure event or any direct, indirect or consequential loss arising from or connected with any activity or service provided by an independent third-party operator.',
+      'To the fullest extent permitted by applicable law, SHRI SAI TOURS & TRAVELS shall not be liable for any injury, accident, illness, death, loss, theft, damage, delay, cancellation, schedule change, weather disruption, force majeure event or any direct, indirect or consequential loss arising from or connected with any activity or service provided by an independent third-party operator.',
       'Any claims relating to the conduct, safety, operation or quality of an activity shall be addressed directly with the respective service provider responsible for delivering that experience.',
     ],
   },
   {
     title: 'Indemnity',
     paragraphs: [
-      "You agree to indemnify and hold harmless Shree Sai Tours & Travels, its founders, employees, representatives and affiliates from any claims, liabilities, losses, damages, costs or expenses arising out of your participation in any activity, your breach of these Terms, or your failure to comply with the instructions, policies or safety requirements of the relevant service provider, except where such liability arises from Shree Sai Tours & Travels's own gross negligence or wilful misconduct.",
+      "You agree to indemnify and hold harmless SHRI SAI TOURS & TRAVELS, its founders, employees, representatives and affiliates from any claims, liabilities, losses, damages, costs or expenses arising out of your participation in any activity, your breach of these Terms, or your failure to comply with the instructions, policies or safety requirements of the relevant service provider, except where such liability arises from SHRI SAI TOURS & TRAVELS's own gross negligence or wilful misconduct.",
     ],
   },
   {
@@ -111,31 +111,31 @@ export const TERMS_SECTIONS: TermsSection[] = [
   {
     title: 'Intellectual Property',
     paragraphs: [
-      'All content available on the Shree Sai Tours & Travels website, including text, logos, graphics, photographs, videos, designs, trademarks and other materials, are the intellectual property of Shree Sai Tours & Travels or their respective owners and may not be copied, reproduced, modified or used without prior written permission.',
+      'All content available on the SHRI SAI TOURS & TRAVELS website, including text, logos, graphics, photographs, videos, designs, trademarks and other materials, are the intellectual property of SHRI SAI TOURS & TRAVELS or their respective owners and may not be copied, reproduced, modified or used without prior written permission.',
     ],
   },
   {
     title: 'Third-Party Websites & Services',
     paragraphs: [
-      'The Shree Sai Tours & Travels website may contain links to third-party websites or services for your convenience. Shree Sai Tours & Travels does not control, endorse or assume responsibility for the content, policies, products or services of any third-party website or operator.',
+      'The SHRI SAI TOURS & TRAVELS website may contain links to third-party websites or services for your convenience. SHRI SAI TOURS & TRAVELS does not control, endorse or assume responsibility for the content, policies, products or services of any third-party website or operator.',
     ],
   },
   {
     title: 'Right to Refuse Service',
     paragraphs: [
-      'Shree Sai Tours & Travels reserves the right to decline or cancel any enquiry or booking, refuse participation, suspend or terminate access to its services where required for safety, operational, legal or commercial reasons, or where a customer is found to be in breach of these Terms & Conditions.',
+      'SHRI SAI TOURS & TRAVELS reserves the right to decline or cancel any enquiry or booking, refuse participation, suspend or terminate access to its services where required for safety, operational, legal or commercial reasons, or where a customer is found to be in breach of these Terms & Conditions.',
     ],
   },
   {
     title: 'Amendments',
     paragraphs: [
-      'Shree Sai Tours & Travels reserves the right to update or modify these Terms & Conditions, Disclaimer and related policies at any time without prior notice. The revised version shall become effective immediately upon publication on the website. Continued use of our website or services constitutes acceptance of the updated terms.',
+      'SHRI SAI TOURS & TRAVELS reserves the right to update or modify these Terms & Conditions, Disclaimer and related policies at any time without prior notice. The revised version shall become effective immediately upon publication on the website. Continued use of our website or services constitutes acceptance of the updated terms.',
     ],
   },
   {
     title: 'Privacy',
     paragraphs: [
-      'Any personal information collected by Shree Sai Tours & Travels shall be processed in accordance with our Privacy Policy and applicable laws. By using our services, you consent to the collection, storage and use of your information for the purpose of processing enquiries, bookings and customer support.',
+      'Any personal information collected by SHRI SAI TOURS & TRAVELS shall be processed in accordance with our Privacy Policy and applicable laws. By using our services, you consent to the collection, storage and use of your information for the purpose of processing enquiries, bookings and customer support.',
     ],
   },
   {
@@ -147,7 +147,7 @@ export const TERMS_SECTIONS: TermsSection[] = [
   {
     title: 'Entire Agreement',
     paragraphs: [
-      'These Terms & Conditions, together with our Disclaimer, Privacy Policy, Cancellation & Refund Policy and any activity-specific instructions or waivers, constitute the complete agreement between you and Shree Sai Tours & Travels with respect to your use of our website and services.',
+      'These Terms & Conditions, together with our Disclaimer, Privacy Policy, Cancellation & Refund Policy and any activity-specific instructions or waivers, constitute the complete agreement between you and SHRI SAI TOURS & TRAVELS with respect to your use of our website and services.',
     ],
   },
   {
@@ -159,7 +159,7 @@ export const TERMS_SECTIONS: TermsSection[] = [
   {
     title: 'Contact',
     paragraphs: [
-      'For any questions relating to these Terms & Conditions, please contact Shree Sai Tours & Travels through the contact details provided on our website.',
+      'For any questions relating to these Terms & Conditions, please contact SHRI SAI TOURS & TRAVELS through the contact details provided on our website.',
     ],
   },
 ];

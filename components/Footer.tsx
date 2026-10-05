@@ -98,13 +98,13 @@ const Footer = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-0">
             {/* Brand + social */}
             <div className="lg:pr-10 space-y-6">
-              <Link href="/" className="inline-flex items-center gap-3">
-                <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full border border-gray-200 bg-white shadow-sm">
-                  <Image src={LOGO_SRC} alt={SITE_NAME} fill className="object-contain p-1.5" sizes="56px" />
+              <Link href="/" className="group inline-flex items-center gap-4">
+                <div className="relative h-20 w-20 sm:h-24 sm:w-24 shrink-0 overflow-hidden rounded-full border border-gray-200 bg-white shadow-md transition-transform duration-300 group-hover:scale-105">
+                  <Image src={LOGO_SRC} alt={SITE_NAME} fill className="object-contain p-1" sizes="(max-width: 640px) 80px, 96px" />
                 </div>
-                <div>
-                  <p className="text-xl font-black text-gray-900 tracking-tight">{SITE_NAME}</p>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#9aab6b]">{SITE_TAGLINE}</p>
+                <div className="flex flex-col">
+                  <p className="text-lg sm:text-xl font-black text-gray-900 tracking-tight leading-tight uppercase">{SITE_NAME}</p>
+                  <p className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#9aab6b] mt-1">{SITE_TAGLINE}</p>
                 </div>
               </Link>
 

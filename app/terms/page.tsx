@@ -34,7 +34,7 @@ export default function TermsPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <p className="text-sm text-gray-500 mb-10 leading-relaxed">
-              Please read these terms carefully before making an enquiry or booking. By using {SITE_NAME}
+              Please read these terms carefully before making an enquiry or booking. By using {SITE_NAME}{' '}
               services, you agree to be bound by the terms below.
             </p>
 

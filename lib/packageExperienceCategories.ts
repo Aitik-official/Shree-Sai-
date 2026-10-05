@@ -64,7 +64,7 @@ export const GROUP_HERO_IMAGES: Record<string, string> = {
 
 const img = (slug: keyof typeof CATEGORY_IMAGES) => CATEGORY_IMAGES[slug];
 
-export const PACKAGE_NAV_GROUPS: PackageNavGroup[] = [
+export const LEGACY_PACKAGE_NAV_GROUPS: PackageNavGroup[] = [
   {
     label: 'Water',
     slug: 'water',
@@ -130,27 +130,27 @@ export const PACKAGE_NAV_GROUPS: PackageNavGroup[] = [
         group: 'water',
       },
       {
-        value: 'Parasailing (Future)',
-        label: 'Parasailing (Future)',
+        value: 'Parasailing',
+        label: 'Parasailing',
         slug: 'parasailing',
         href: '/packages/parasailing',
-        heroTitle: 'Parasailing',
-        heroSubtitle: `Soar above the coastline — coming soon to ${SITE_NAME}`,
+        heroTitle: 'Parasailing Adventures',
+        heroSubtitle: 'Soar above coastlines and lakes with panoramic views',
         heroImage: img('parasailing'),
-        emptyMessage: 'Parasailing experiences coming soon',
+        emptyMessage: 'No parasailing packages yet',
         accent: 'cyan',
         group: 'water',
         isFuture: true,
       },
       {
-        value: 'Scuba Diving & Snorkeling (Future)',
-        label: 'Scuba Diving & Snorkeling (Future)',
+        value: 'Scuba Diving & Snorkeling',
+        label: 'Scuba Diving & Snorkeling',
         slug: 'scuba-diving-snorkeling',
         href: '/packages/scuba-diving-snorkeling',
         heroTitle: 'Scuba Diving & Snorkeling',
-        heroSubtitle: 'Underwater exploration experiences — launching soon',
+        heroSubtitle: 'Explore vibrant reefs, marine life, and underwater worlds',
         heroImage: img('scuba-diving-snorkeling'),
-        emptyMessage: 'Scuba & snorkeling packages coming soon',
+        emptyMessage: 'No scuba diving packages yet',
         accent: 'blue',
         group: 'water',
         isFuture: true,
@@ -162,55 +162,56 @@ export const PACKAGE_NAV_GROUPS: PackageNavGroup[] = [
     slug: 'land-motor',
     items: [
       {
-        value: 'Bike Expeditions By Destination',
-        label: 'Bike Expeditions By Destination',
+        value: 'Bike Expeditions by Destination',
+        label: 'Bike Expeditions by Destination',
         slug: 'bike-expeditions-by-destination',
         href: '/packages/bike-expeditions-by-destination',
-        heroTitle: 'Bike Expeditions By Destination',
-        heroSubtitle: 'Curated motorcycle and bike expeditions across iconic routes worldwide',
+        heroTitle: 'Motorcycle & Road Expeditions',
+        heroSubtitle: 'Curated self-ride and guided motor expeditions across iconic circuits',
         heroImage: img('bike-expeditions-by-destination'),
-        emptyMessage: 'No bike expedition packages yet',
+        emptyMessage: 'No bike expeditions yet',
         accent: 'orange',
         group: 'land-motor',
+        legacyValues: ['Bike Trips', 'Biking'],
       },
       {
-        value: 'Domestic North — Leh, Ladakh, Spiti & North East',
-        label: 'Domestic North — Leh, Ladakh, Spiti & North East',
+        value: 'Domestic North — Spiti, Ladakh & North India',
+        label: 'Domestic North — Spiti, Ladakh & North India',
         slug: 'domestic-north-bike-expeditions',
         href: '/packages/domestic-north-bike-expeditions',
-        heroTitle: 'Domestic North Bike Expeditions',
-        heroSubtitle:
-          'Leh, Ladakh, Spiti, Chandrataal, Sikkim Nathula Pass, Arunachal Tawang, Meghalaya & North East',
+        heroTitle: 'North India & Himalayan Expeditions',
+        heroSubtitle: 'Spiti Valley, Ladakh passes, and legendary Northern mountain highways',
         heroImage: img('domestic-north-bike-expeditions'),
-        emptyMessage: 'No domestic north bike packages yet',
+        emptyMessage: 'No North India expeditions yet',
         accent: 'amber',
         group: 'land-motor',
-        legacyValues: ['Bike & SUV 4x4 Expeditions'],
+        legacyValues: ['Spiti Valley', 'Ladakh Bike Trip'],
       },
       {
-        value: 'Domestic South — Pondicherry, Kerala & South India',
-        label: 'Domestic South — Pondicherry, Kerala & South India',
+        value: 'Domestic South — Western Ghats & Coastal Circuits',
+        label: 'Domestic South — Western Ghats & Coastal Circuits',
         slug: 'domestic-south-bike-expeditions',
         href: '/packages/domestic-south-bike-expeditions',
-        heroTitle: 'Domestic South Bike Expeditions',
-        heroSubtitle:
-          'Pondicherry, Kolli Hills, Coimbatore, Kerala, wildlife sanctuaries & southern scenic routes',
+        heroTitle: 'South India & Coastal Rides',
+        heroSubtitle: 'Misty ghats, coffee estates, and scenic coastal road trips',
         heroImage: img('domestic-south-bike-expeditions'),
-        emptyMessage: 'No domestic south bike packages yet',
+        emptyMessage: 'No South India rides yet',
         accent: 'orange',
         group: 'land-motor',
+        legacyValues: ['South India Rides'],
       },
       {
         value: 'International — Nepal, Vietnam, Thailand, Indonesia',
         label: 'International — Nepal, Vietnam, Thailand, Indonesia',
         slug: 'international-bike-expeditions',
         href: '/packages/international-bike-expeditions',
-        heroTitle: 'International Bike Expeditions',
-        heroSubtitle: 'Epic cross-border rides through Nepal, Vietnam, Thailand, and Indonesia',
+        heroTitle: 'Cross-Border Expeditions',
+        heroSubtitle: 'Epic international riding routes across Asia with full support crews',
         heroImage: img('international-bike-expeditions'),
-        emptyMessage: 'No international bike packages yet',
-        accent: 'amber',
+        emptyMessage: 'No international expeditions yet',
+        accent: 'orange',
         group: 'land-motor',
+        legacyValues: ['Nepal Tour', 'Vietnam Biking', 'International'],
       },
     ],
   },
@@ -224,37 +225,37 @@ export const PACKAGE_NAV_GROUPS: PackageNavGroup[] = [
         slug: 'bungee-jumping',
         href: '/packages/bungee-jumping',
         heroTitle: 'Bungee Jumping',
-        heroSubtitle: 'Heart-pounding jumps from iconic bridges and platforms',
+        heroSubtitle: 'Pure adrenaline free-fall jumps from certified international platforms',
         heroImage: img('bungee-jumping'),
         emptyMessage: 'No bungee jumping packages yet',
         accent: 'green',
         group: 'land-physical',
       },
       {
-        value: 'Treks (Future)',
-        label: 'Treks (Future)',
-        slug: 'treks',
-        href: '/packages/treks',
-        heroTitle: 'Treks',
-        heroSubtitle: 'Guided trekking adventures through mountains and wilderness — coming soon',
-        heroImage: img('treks'),
-        emptyMessage: 'Trekking packages coming soon',
-        accent: 'green',
-        group: 'land-physical',
-        isFuture: true,
-      },
-      {
-        value: 'Cycling (Future)',
-        label: 'Cycling (Future)',
+        value: 'Cycling Expeditions & Tours',
+        label: 'Cycling Expeditions & Tours',
         slug: 'cycling',
         href: '/packages/cycling',
-        heroTitle: 'Cycling',
-        heroSubtitle: 'Scenic cycling tours and trail rides — launching soon',
+        heroTitle: 'Cycling Expeditions & Tours',
+        heroSubtitle: 'Pedal through scenic countrysides, mountain passes, and cultural trails',
         heroImage: img('cycling'),
-        emptyMessage: 'Cycling packages coming soon',
+        emptyMessage: 'No cycling packages yet',
         accent: 'green',
         group: 'land-physical',
-        isFuture: true,
+        legacyValues: ['Cycling', 'Bicycle Tours'],
+      },
+      {
+        value: 'Treks & High-Altitude Trails',
+        label: 'Treks & High-Altitude Trails',
+        slug: 'treks',
+        href: '/packages/treks',
+        heroTitle: 'Treks & High-Altitude Trails',
+        heroSubtitle: 'Guided summit treks, valley trails, and wilderness camping journeys',
+        heroImage: img('treks'),
+        emptyMessage: 'No trekking packages yet',
+        accent: 'amber',
+        group: 'land-physical',
+        legacyValues: ['Trekking', 'Hiking'],
       },
     ],
   },
@@ -263,41 +264,43 @@ export const PACKAGE_NAV_GROUPS: PackageNavGroup[] = [
     slug: 'sky',
     items: [
       {
-        value: 'Helicopter Rides',
-        label: 'Helicopter Rides',
+        value: 'Helicopter Rides & Heli-Tours',
+        label: 'Helicopter Rides & Heli-Tours',
         slug: 'helicopter-rides',
         href: '/packages/helicopter-rides',
-        heroTitle: 'Helicopter Rides',
-        heroSubtitle: 'Aerial sightseeing and luxury helicopter experiences',
+        heroTitle: 'Helicopter Rides & Heli-Tours',
+        heroSubtitle: 'Aerial city tours, Himalayan heli-sightseeing, and VIP transfers',
         heroImage: img('helicopter-rides'),
-        emptyMessage: 'No helicopter ride packages yet',
+        emptyMessage: 'No helicopter packages yet',
         accent: 'violet',
-        group: 'sky',
-      },
-      {
-        value: 'Small aircraft / single engine (Future)',
-        label: 'Small aircraft / single engine (Future)',
-        slug: 'small-aircraft',
-        href: '/packages/small-aircraft',
-        heroTitle: 'Small Aircraft & Single Engine',
-        heroSubtitle: 'Private light aircraft experiences — coming soon',
-        heroImage: img('small-aircraft'),
-        emptyMessage: 'Small aircraft packages coming soon',
-        accent: 'blue',
         group: 'sky',
         isFuture: true,
       },
       {
-        value: 'Paragliding',
-        label: 'Paragliding',
+        value: 'Small Aircraft & Scenic Flights',
+        label: 'Small Aircraft & Scenic Flights',
+        slug: 'small-aircraft',
+        href: '/packages/small-aircraft',
+        heroTitle: 'Scenic Aviation & Air Experiences',
+        heroSubtitle: 'Private charter flyovers, mountain flights, and intro flight lessons',
+        heroImage: img('small-aircraft'),
+        emptyMessage: 'No scenic flight packages yet',
+        accent: 'violet',
+        group: 'sky',
+        isFuture: true,
+      },
+      {
+        value: 'Paragliding & Skydiving',
+        label: 'Paragliding & Skydiving',
         slug: 'paragliding',
         href: '/packages/paragliding',
-        heroTitle: 'Paragliding',
-        heroSubtitle: 'Soar over valleys and coastlines with certified tandem pilots',
+        heroTitle: 'Paragliding & Sky Adventures',
+        heroSubtitle: 'Tandem paragliding thermals, coastal soaring, and tandem skydives',
         heroImage: img('paragliding'),
         emptyMessage: 'No paragliding packages yet',
         accent: 'violet',
         group: 'sky',
+        isFuture: true,
       },
     ],
   },
@@ -306,66 +309,36 @@ export const PACKAGE_NAV_GROUPS: PackageNavGroup[] = [
     slug: 'upcoming-tours',
     items: [
       {
-        value: 'Upcoming Tours',
-        label: 'Upcoming Tours',
+        value: 'Upcoming Tours & Departures',
+        label: 'Upcoming Tours & Departures',
         slug: 'upcoming-tours',
         href: '/packages/upcoming-tours',
-        heroTitle: 'Upcoming Tours',
-        heroSubtitle: `Featured and upcoming experiences — book your next adventure with ${SITE_NAME}`,
+        heroTitle: 'Upcoming Expeditions & Fixed Departures',
+        heroSubtitle: 'Reserve your spot on upcoming group tours, festival rides, and signature itineraries',
         heroImage: img('upcoming-tours'),
-        emptyMessage: 'No upcoming tours yet',
+        emptyMessage: 'No upcoming departures announced yet',
         accent: 'amber',
         group: 'upcoming-tours',
-        legacyValues: ['Upcoming Rides'],
-        miniItems: [
-          {
-            slug: 'upcoming-ladakh',
-            label: 'Ladakh & Umling La',
-            value: 'Ladakh & Umling La',
-            href: '/packages/upcoming-tours',
-            subcategorySlug: 'upcoming-tours',
-            groupSlug: 'upcoming-tours',
-          },
-          {
-            slug: 'upcoming-cross-country',
-            label: 'Cross-Country Rides',
-            value: 'Cross-Country Rides',
-            href: '/packages/upcoming-tours',
-            subcategorySlug: 'upcoming-tours',
-            groupSlug: 'upcoming-tours',
-          },
-          {
-            slug: 'upcoming-spiti',
-            label: 'Spiti & Himachal',
-            value: 'Spiti & Himachal',
-            href: '/packages/upcoming-tours',
-            subcategorySlug: 'upcoming-tours',
-            groupSlug: 'upcoming-tours',
-          },
-          {
-            slug: 'upcoming-international',
-            label: 'International Motorbike Tours',
-            value: 'International Motorbike Tours',
-            href: '/packages/upcoming-tours',
-            subcategorySlug: 'upcoming-tours',
-            groupSlug: 'upcoming-tours',
-          },
-          {
-            slug: 'upcoming-desert',
-            label: 'Desert & Heritage Rides',
-            value: 'Desert & Heritage Rides',
-            href: '/packages/upcoming-tours',
-            subcategorySlug: 'upcoming-tours',
-            groupSlug: 'upcoming-tours',
-          },
-        ],
+        legacyValues: ['Fixed Departures', 'Upcoming Batches'],
       },
     ],
   },
 ];
 
+export const PACKAGE_NAV_GROUPS: PackageNavGroup[] = [
+  {
+    label: 'Varanasi',
+    slug: 'varanasi',
+    items: [],
+  },
+  {
+    label: 'Nepal',
+    slug: 'nepal',
+    items: [],
+  },
+];
 export const PACKAGE_EXPERIENCE_CATEGORIES: PackageExperienceCategory[] =
-  PACKAGE_NAV_GROUPS.flatMap((group) => group.items);
+  LEGACY_PACKAGE_NAV_GROUPS.flatMap((group) => group.items);
 
 export const PACKAGE_EXPERIENCE_CATEGORY_VALUES = PACKAGE_EXPERIENCE_CATEGORIES.map(
   (category) => category.value
@@ -450,15 +423,22 @@ export function buildCategoryFilter(categorySlug: string) {
 
 /** MongoDB filter for all packages in a nav group (water, land-motor, etc.) */
 export function buildGroupFilter(groupSlug: string) {
-  const group = PACKAGE_NAV_GROUPS.find((g) => g.slug === groupSlug);
-  if (!group) return null;
-
   const escapeRegex = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const clauses = group.items.flatMap((category) =>
-    getCategoryMatchValues(category).map((value) => ({
-      packageCategory: { $regex: new RegExp(`^${escapeRegex(value)}$`, 'i') },
-    }))
-  );
+  const group = PACKAGE_NAV_GROUPS.find((g) => g.slug === groupSlug);
+  const clauses: any[] = [];
+
+  if (group) {
+    for (const category of group.items) {
+      for (const value of getCategoryMatchValues(category)) {
+        clauses.push({ packageCategory: { $regex: new RegExp(`^${escapeRegex(value)}$`, 'i') } });
+      }
+    }
+  }
+
+  // Also include direct slug & label match
+  clauses.push({ packageCategory: { $regex: new RegExp(`^${escapeRegex(groupSlug)}$`, 'i') } });
+  clauses.push({ place: { $regex: new RegExp(`^${escapeRegex(groupSlug)}$`, 'i') } });
+  clauses.push({ location: { $regex: new RegExp(`^${escapeRegex(groupSlug)}$`, 'i') } });
 
   return { $or: clauses };
 }
@@ -477,8 +457,19 @@ export function getNavGroupForCategory(categoryValue: string | undefined) {
 
 export function packageMatchesNavGroup(
   packageCategory: string | undefined,
-  groupSlug: string
+  groupSlug: string,
+  pkg?: { place?: string; location?: string }
 ) {
+  if (!groupSlug) return true;
+  const cleanGroup = groupSlug.toLowerCase().trim();
+  const cleanCat = (packageCategory || '').toLowerCase().trim();
+  const cleanPlace = (pkg?.place || '').toLowerCase().trim();
+  const cleanLocation = (pkg?.location || '').toLowerCase().trim();
+
+  if (cleanCat === cleanGroup || cleanPlace === cleanGroup || cleanLocation === cleanGroup) return true;
+  if (cleanGroup === 'nepal' && (cleanCat.includes('nepal') || cleanPlace.includes('nepal') || cleanLocation.includes('nepal'))) return true;
+  if (cleanGroup === 'varanasi' && (cleanCat.includes('varanasi') || cleanPlace.includes('varanasi') || cleanLocation.includes('varanasi') || cleanCat.includes('kashi'))) return true;
+
   const group = PACKAGE_NAV_GROUPS.find((g) => g.slug === groupSlug);
   if (!group || !packageCategory) return false;
   return group.items.some((cat) => packageMatchesExperienceCategory(packageCategory, cat));

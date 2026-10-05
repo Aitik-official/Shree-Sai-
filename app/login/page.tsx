@@ -87,7 +87,7 @@ const LoginPage = () => {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="admin@shreesaitours.com"
+                    placeholder="admin@shrisaitours.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="pl-10 h-11 border-slate-200 focus:border-primary focus:ring-primary/10 bg-slate-50/30"

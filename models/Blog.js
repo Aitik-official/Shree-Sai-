@@ -25,7 +25,7 @@ const BlogSchema = new mongoose.Schema({
   author: {
     type: String,
     required: [true, 'Please provide an author name'],
-    default: 'Skygo Travel Expert',
+    default: 'SHRI SAI TOURS & TRAVELS Expert',
   },
   category: {
     type: String,

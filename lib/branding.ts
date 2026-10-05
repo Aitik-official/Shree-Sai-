@@ -1,4 +1,4 @@
-export const SITE_NAME = 'Shree Sai Tours & Travels';
+export const SITE_NAME = 'SHRI SAI TOURS & TRAVELS';
 export const SITE_TAGLINE = 'Travel & Tour Experiences';
 export const LOGO_SRC = '/WhatsApp_Image_2026-10-03_at_4.30.52_PM-removebg-preview.png';
 export const SITE_DESCRIPTION =
@@ -8,17 +8,17 @@ export const HERO_SUBHEADING =
   'From family vacations and holiday tour packages to motorcycle expeditions and curated outdoor experiences, we craft journeys that create stories and memories for a lifetime.';
 
 export const BRAND_POSITIONING =
-  'Shree Sai Tours & Travels curates premium travel packages, adventure expeditions and extraordinary experiences across India and beyond. Every journey is thoughtfully crafted to inspire, delight and create stories that stay with you long after the adventure ends.';
+  'SHRI SAI TOURS & TRAVELS curates premium travel packages, adventure expeditions and extraordinary experiences across India and beyond. Every journey is thoughtfully crafted to inspire, delight and create stories that stay with you long after the adventure ends.';
 
 export const DEFAULT_ABOUT_TEXT = BRAND_POSITIONING;
 
 export const DEFAULT_SERVICES_TEXT =
   'Customized travel planning, Guided tours & local experiences, Group & family vacations, Luxury & adventure travel';
 
-export const CONTACT_EMAIL = 'info@shreesaitours.com';
+export const CONTACT_EMAIL = 'info@shrisaitours.com';
 export const CONTACT_PHONE = '+91 87657 67140';
 export const CONTACT_PHONE_TEL = 'tel:+918765767140';
-export const CONTACT_EMAIL_MAILTO = 'mailto:info@shreesaitours.com';
+export const CONTACT_EMAIL_MAILTO = 'mailto:info@shrisaitours.com';
 export const CONTACT_WHATSAPP = 'https://wa.me/918765767140';
 export const CONTACT_ADDRESS = 'Navi Mumbai, Maharashtra 400706';
 export const CONTACT_ADDRESS_LINE = 'Head Office — Navi Mumbai, Maharashtra 400706';
@@ -29,7 +29,7 @@ export const CONTACT_MAP_EMBED =
 
 export const CONTACT_FAQS = [
   {
-    question: 'How do I book an experience with Shree Sai Tours & Travels?',
+    question: 'How do I book an experience with SHRI SAI TOURS & TRAVELS?',
     answer:
       "You can submit an enquiry through our website, WhatsApp or contact our team directly. We'll share the available dates, package details, inclusions and next steps to help you choose the experience that's right for you.",
   },
@@ -56,6 +56,8 @@ export function brandedText(text?: string | null): string {
   return text
     .replace(/Explore\s*360/gi, SITE_NAME)
     .replace(/Explore360/gi, SITE_NAME)
+    .replace(/Shree\s*Sai\s*Tours\s*&\s*Travels/gi, SITE_NAME)
+    .replace(/Shree\s*Sai\s*Tours/gi, SITE_NAME)
     .replace(/Premium Sky\s*Go Tours/gi, `Premium ${SITE_NAME}`)
     .replace(/Premium Skygo Tours/gi, `Premium ${SITE_NAME}`)
     .replace(/Sky\s*Go/gi, SITE_NAME)

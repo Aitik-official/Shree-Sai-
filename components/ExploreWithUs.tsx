@@ -19,14 +19,14 @@ type ExploreWithUsProps = {
 };
 
 const POLAROID_IMAGES = [
-  { src: "/safeimagekit-kayak2__1_.webp", alt: "Kayaking adventure", rotate: "-rotate-[6deg]", z: "z-10" },
+  { src: "/caption.jpg", alt: "Varanasi Sunset Cruise", rotate: "-rotate-[6deg]", z: "z-10" },
   {
-    src: "/four-adventurous-friends-whitewater-rafting-through-rapids-free-photo.webp",
-    alt: "Whitewater rafting",
+    src: "/istockphoto-537988165-612x612.jpg",
+    alt: "Varanasi Ghats Heritage",
     rotate: "rotate-[4deg]",
     z: "z-20",
   },
-  { src: "/bungee-jumping-nedir.webp", alt: "Bungee jumping", rotate: "-rotate-[2deg]", z: "z-30" },
+  { src: "/photo4jpg.jpg", alt: "Nepal Himalayas Mountain View", rotate: "-rotate-[2deg]", z: "z-30" },
 ] as const;
 
 const ExploreWithUs = ({ initialContent }: ExploreWithUsProps) => {

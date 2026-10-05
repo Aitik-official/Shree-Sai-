@@ -18,9 +18,15 @@ import {
 import { applyCategoryLabelOverrides, getCategoryLabelOverridesFromSettings } from '../../lib/resolveCategoryLabels';
 
 async function getOrCreateSettings() {
-  let settings = await Settings.findOne();
+  const collection = Settings.db?.collection('settings');
+  let settings = collection ? await collection.findOne({}) : null;
+  console.log('[DEBUG DB NAME]:', Settings.db?.name, 'SETTINGS DOC ID:', settings?._id, 'CUSTOM GROUPS IN DB:', settings?.customGroups);
   if (!settings) {
-    settings = await Settings.create({});
+    settings = await Settings.findOne().lean();
+  }
+  if (!settings) {
+    const created = await Settings.create({});
+    settings = created.toObject ? created.toObject() : created;
   }
   if (!settings.groupLabelOverrides) settings.groupLabelOverrides = {};
   if (!settings.categoryLabelOverrides) settings.categoryLabelOverrides = {};
@@ -30,18 +36,21 @@ async function getOrCreateSettings() {
   if (!settings.miniCategoryLabelOverrides) settings.miniCategoryLabelOverrides = {};
   if (!settings.hiddenBuiltinMiniCategories) settings.hiddenBuiltinMiniCategories = [];
   if (!settings.hiddenBuiltinSubcategories) settings.hiddenBuiltinSubcategories = [];
+  if (!settings.hiddenBuiltinGroups) settings.hiddenBuiltinGroups = [];
   return settings;
 }
 
 function buildResponse(settings) {
-  const catalog = getCategoryLabelOverridesFromSettings(settings);
+  const plainSettings = settings?.toObject ? settings.toObject() : settings;
+  const catalog = getCategoryCatalogFromSettings(plainSettings);
+  const navGroups = buildNavGroupsFromCatalog(catalog);
   return {
     overrides: {
       groupLabels: catalog.groupLabels,
       categoryLabels: catalog.categoryLabels,
     },
     catalog,
-    navGroups: buildNavGroupsFromCatalog(catalog),
+    navGroups,
   };
 }
 
@@ -83,6 +92,8 @@ async function renameCategoryPackages(oldValues, newLabel) {
 
 export default async function handler(req, res) {
   await dbConnect();
+
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
 
   if (req.method === 'GET') {
     try {
@@ -310,8 +321,8 @@ export default async function handler(req, res) {
         }
       } else if (action === 'deleteGroup') {
         const slug = String(req.body.slug || '').trim();
-        if (!isCustomGroup(slug, catalog)) {
-          return res.status(400).json({ success: false, error: 'Only custom experience types can be deleted' });
+        if (!slug) {
+          return res.status(400).json({ success: false, error: 'slug is required' });
         }
 
         const navGroups = buildNavGroupsFromCatalog(catalog);
@@ -327,20 +338,28 @@ export default async function handler(req, res) {
           if (count > 0) {
             return res.status(400).json({
               success: false,
-              error: `Cannot delete "${group?.label}" — packages are still assigned to "${sub.label}"`,
+              error: `Cannot delete "${group?.label || slug}" — ${count} package(s) are still assigned to "${sub.label}"`,
             });
           }
         }
 
-        refreshed = await updateSettingsById(settings._id, {
-          customGroups: (settings.customGroups || []).filter((group) => group.slug !== slug),
-          customSubcategories: (settings.customSubcategories || []).filter(
-            (sub) => sub.groupSlug !== slug
-          ),
-          customMiniCategories: (settings.customMiniCategories || []).filter(
-            (mini) => mini.groupSlug !== slug
-          ),
-        });
+        if (isCustomGroup(slug, catalog)) {
+          refreshed = await updateSettingsById(settings._id, {
+            customGroups: (settings.customGroups || []).filter((group) => group.slug !== slug),
+            customSubcategories: (settings.customSubcategories || []).filter(
+              (sub) => sub.groupSlug !== slug
+            ),
+            customMiniCategories: (settings.customMiniCategories || []).filter(
+              (mini) => mini.groupSlug !== slug
+            ),
+          });
+        } else {
+          const hidden = new Set(settings.hiddenBuiltinGroups || []);
+          hidden.add(slug);
+          refreshed = await updateSettingsById(settings._id, {
+            hiddenBuiltinGroups: Array.from(hidden),
+          });
+        }
       } else if (action === 'deleteSubcategory') {
         const slug = String(req.body.slug || '').trim();
         if (!slug) {

@@ -40,6 +40,7 @@ export interface CategoryCatalogSettings extends CategoryLabelOverrides {
   miniCategoryLabels?: Record<string, string>;
   hiddenBuiltinMiniCategories?: string[];
   hiddenBuiltinSubcategories?: string[];
+  hiddenBuiltinGroups?: string[];
 }
 
 const GROUP_ACCENTS: Record<string, PackageExperienceCategory['accent']> = {
@@ -68,6 +69,7 @@ export function getCategoryCatalogFromSettings(
     miniCategoryLabelOverrides?: Record<string, string>;
     hiddenBuiltinMiniCategories?: string[];
     hiddenBuiltinSubcategories?: string[];
+    hiddenBuiltinGroups?: string[];
   } | null
 ): CategoryCatalogSettings {
   return {
@@ -79,7 +81,12 @@ export function getCategoryCatalogFromSettings(
     miniCategoryLabels: settings?.miniCategoryLabelOverrides ?? {},
     hiddenBuiltinMiniCategories: settings?.hiddenBuiltinMiniCategories ?? [],
     hiddenBuiltinSubcategories: settings?.hiddenBuiltinSubcategories ?? [],
+    hiddenBuiltinGroups: settings?.hiddenBuiltinGroups ?? [],
   };
+}
+
+export function isBuiltinGroup(slug: string): boolean {
+  return PACKAGE_NAV_GROUPS.some((group) => group.slug === slug);
 }
 
 export function getAllBuiltinSubcategorySlugs(): Set<string> {
@@ -221,6 +228,15 @@ export function buildCustomSubcategory(entry: CustomSubcategoryEntry): PackageEx
   };
 }
 
+function filterHiddenBuiltinGroups(
+  groups: PackageNavGroup[],
+  catalog: CategoryCatalogSettings
+): PackageNavGroup[] {
+  const hidden = new Set(catalog.hiddenBuiltinGroups ?? []);
+  if (!hidden.size) return groups;
+  return groups.filter((group) => !hidden.has(group.slug));
+}
+
 export function buildNavGroupsFromCatalog(
   catalog?: CategoryCatalogSettings | null
 ): PackageNavGroup[] {
@@ -273,8 +289,11 @@ export function buildNavGroupsFromCatalog(
     }
   }
 
-  return filterHiddenBuiltinSubcategories(
-    attachMiniCategories(result, catalog ?? {}),
+  return filterHiddenBuiltinGroups(
+    filterHiddenBuiltinSubcategories(
+      attachMiniCategories(result, catalog ?? {}),
+      catalog ?? {}
+    ),
     catalog ?? {}
   );
 }
@@ -377,14 +396,27 @@ export function buildGroupFilterForSlug(groupSlug: string, catalog?: CategoryCat
   if (!group) return null;
 
   const escapeRegex = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const clauses = group.items.flatMap((category) => {
+  const clauses: any[] = group.items.flatMap((category) => {
     const values = [category.value, ...(category.legacyValues || [])];
     return values.map((value) => ({
       packageCategory: { $regex: new RegExp(`^${escapeRegex(value)}$`, 'i') },
     }));
   });
 
-  return clauses.length ? { $or: clauses } : null;
+  clauses.push({
+    packageCategory: { $regex: new RegExp(`^${escapeRegex(group.label)}$`, 'i') },
+  });
+  clauses.push({
+    packageCategory: { $regex: new RegExp(`^${escapeRegex(group.slug)}$`, 'i') },
+  });
+  clauses.push({
+    place: { $regex: new RegExp(`^${escapeRegex(group.slug)}$`, 'i') },
+  });
+  clauses.push({
+    location: { $regex: new RegExp(`^${escapeRegex(group.slug)}$`, 'i') },
+  });
+
+  return { $or: clauses };
 }
 
 export function formatCategoryOptionLabel(category: PackageExperienceCategory): string {

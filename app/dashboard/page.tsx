@@ -462,7 +462,7 @@ export default function DashboardPage() {
 
     if (groupFilter !== "all") {
       filtered = filtered.filter((pkg) =>
-        packageMatchesNavGroup(pkg.packageCategory, groupFilter)
+        packageMatchesNavGroup(pkg.packageCategory, groupFilter, pkg)
       );
     }
 
@@ -1721,10 +1721,10 @@ export default function DashboardPage() {
                         </label>
                         <Select value={groupFilter} onValueChange={handleGroupFilterChange}>
                           <SelectTrigger className="h-14 rounded-2xl border-white shadow-sm bg-white">
-                            <SelectValue placeholder="All Types" />
+                            <SelectValue placeholder="All Categories" />
                           </SelectTrigger>
                           <SelectContent className="rounded-2xl border-white shadow-xl">
-                            <SelectItem value="all">All Types</SelectItem>
+                            <SelectItem value="all">All Categories</SelectItem>
                             {navGroups.map((group) => (
                               <SelectItem key={group.slug} value={group.slug}>
                                 {group.label}
@@ -1734,45 +1734,49 @@ export default function DashboardPage() {
                         </Select>
                       </div>
 
-                      {/* Subcategory Filter */}
-                      <div className="space-y-2">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">
-                          Subcategory
-                        </label>
-                        <Select value={categoryFilter} onValueChange={handleCategoryFilterChange}>
-                          <SelectTrigger className="h-14 rounded-2xl border-white shadow-sm bg-white">
-                            <SelectValue placeholder="All Subcategories" />
-                          </SelectTrigger>
-                          <SelectContent className="rounded-2xl border-white shadow-xl max-h-72">
-                            <SelectItem value="all">All Subcategories</SelectItem>
-                            {filterCategoryOptions.map((category) => (
-                              <SelectItem key={category.value} value={category.value}>
-                                {category.label}{category.isFuture ? ' (Future)' : ''}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
+                      {/* Subcategory Filter - show if subcategories exist */}
+                      {filterCategoryOptions.length > 0 && (
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">
+                            Subcategory
+                          </label>
+                          <Select value={categoryFilter} onValueChange={handleCategoryFilterChange}>
+                            <SelectTrigger className="h-14 rounded-2xl border-white shadow-sm bg-white">
+                              <SelectValue placeholder="All Subcategories" />
+                            </SelectTrigger>
+                            <SelectContent className="rounded-2xl border-white shadow-xl max-h-72">
+                              <SelectItem value="all">All Subcategories</SelectItem>
+                              {filterCategoryOptions.map((category) => (
+                                <SelectItem key={category.value} value={category.value}>
+                                  {category.label}{category.isFuture ? ' (Future)' : ''}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      )}
 
-                      {/* Mini Category Filter */}
-                      <div className="space-y-2">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">
-                          Mini Category
-                        </label>
-                        <Select value={miniFilter} onValueChange={setMiniFilter}>
-                          <SelectTrigger className="h-14 rounded-2xl border-white shadow-sm bg-white">
-                            <SelectValue placeholder="All Mini Categories" />
-                          </SelectTrigger>
-                          <SelectContent className="rounded-2xl border-white shadow-xl max-h-72">
-                            <SelectItem value="all">All Mini Categories</SelectItem>
-                            {filterMiniOptions.map((mini) => (
-                              <SelectItem key={mini.slug} value={mini.value}>
-                                {mini.label}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
+                      {/* Mini Category Filter - show if mini categories exist */}
+                      {filterMiniOptions.length > 0 && (
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-1">
+                            Mini Category
+                          </label>
+                          <Select value={miniFilter} onValueChange={setMiniFilter}>
+                            <SelectTrigger className="h-14 rounded-2xl border-white shadow-sm bg-white">
+                              <SelectValue placeholder="All Mini Categories" />
+                            </SelectTrigger>
+                            <SelectContent className="rounded-2xl border-white shadow-xl max-h-72">
+                              <SelectItem value="all">All Mini Categories</SelectItem>
+                              {filterMiniOptions.map((mini) => (
+                                <SelectItem key={mini.slug} value={mini.value}>
+                                  {mini.label}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      )}
 
                       {/* Search */}
                       <div className="space-y-2 lg:col-span-1">

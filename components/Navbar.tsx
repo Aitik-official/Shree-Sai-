@@ -335,7 +335,7 @@ const Navbar = () => {
             </div>
             <div className="flex flex-col">
               <span className="text-base sm:text-lg md:text-xl font-[900] tracking-tight leading-tight uppercase text-gray-900">
-                SHREE SAI
+                SHRI SAI
               </span>
               <span className="text-[10px] sm:text-[11px] md:text-xs font-extrabold tracking-[0.2em] uppercase leading-none text-[#bd9245]">
                 TOURS &amp; TRAVELS
